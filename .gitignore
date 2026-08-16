@@ -1,0 +1,19 @@
+# Python virtual environment
+.venv/
+venv/
+env/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Environment secrets
+.env
+
+# Alembic
+backend/alembic/versions/*.pyc
+
+# OS
+.DS_Store
+*.log
