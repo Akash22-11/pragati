@@ -1,0 +1,62 @@
+name: Backend CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: pragati123
+          POSTGRES_DB: pragati_db
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        working-directory: backend
+        run: pip install -r requirements.txt
+
+      - name: Run flake8 lint
+        working-directory: backend
+        run: |
+          pip install flake8
+          flake8 app/ main.py --max-line-length=120 --ignore=E501,W503
+
+      - name: Run pytest
+        working-directory: backend
+        env:
+          DATABASE_URL: postgresql://postgres:pragati123@localhost:5432/pragati_db
+          JWT_SECRET: test-secret-key
+          JWT_ALGORITHM: HS256
+          ACCESS_TOKEN_EXPIRE_MINUTES: 30
+          CLOUDINARY_CLOUD_NAME: test
+          CLOUDINARY_API_KEY: test
+          CLOUDINARY_API_SECRET: test
+          MAIL_EMAIL: test@test.com
+          MAIL_PASSWORD: test
+          ADMIN_EMAIL: admin@test.com
+        run: |
+          pip install pytest httpx
+          pytest --tb=short -q
