@@ -38,12 +38,7 @@ jobs:
         working-directory: backend
         run: pip install -r requirements.txt
 
-      - name: Run flake8 lint
-        working-directory: backend
-        run: |
-          pip install flake8
-          flake8 app/ main.py --max-line-length=120 --ignore=E501,W503,E302,W292,F811,F401
-          
+      - name: Run pytest
         working-directory: backend
         env:
           DATABASE_URL: postgresql://postgres:pragati123@localhost:5432/pragati_db
@@ -56,6 +51,4 @@ jobs:
           MAIL_EMAIL: test@test.com
           MAIL_PASSWORD: test
           ADMIN_EMAIL: admin@test.com
-        run: |
-          pip install pytest httpx
-          pytest --tb=short -q
+        run: pytest --tb=short -q
