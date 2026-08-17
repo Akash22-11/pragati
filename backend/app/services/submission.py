@@ -8,20 +8,19 @@ from datetime import datetime
 import hashlib
 import uuid
 
-
 def get_submission_by_id(db: Session, submission_id: uuid.UUID) -> Submission:
     submission = db.query(Submission).filter(Submission.id == submission_id).first()
     if not submission:
         raise HTTPException(status_code=404, detail="Submission not found")
     return submission
 
-
-def get_submissions_by_status(db: Session, status: SubmissionStatus = None):
+def get_submissions_by_status(db: Session, status: SubmissionStatus = None, student_id: uuid.UUID = None):
     query = db.query(Submission)
     if status:
         query = query.filter(Submission.status == status)
+    if student_id:
+        query = query.filter(Submission.student_id == student_id)
     return query.all()
-
 
 def verify_submission(db, submission_id, verifier, action, note=None):
     submission = get_submission_by_id(db, submission_id)
