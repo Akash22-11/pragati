@@ -1,4 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi.security import HTTPBearer
 from sqlalchemy.orm import Session
 from app.database import get_db
 from app.schemas.auth import RegisterRequest, LoginRequest, TokenResponse, UserResponse
