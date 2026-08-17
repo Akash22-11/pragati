@@ -4,7 +4,7 @@ from app.config import settings
 from app.routers import auth_router, submissions_router, profile_router, notifications_router, uploads_router
 from app.socket import sio
 import socketio
-import app.models
+import app.models  # noqa: F401
 
 
 fastapi_app = FastAPI(
@@ -33,4 +33,4 @@ def health_check():
     return {"status": "ok", "project": "Pragati"}
 
 
-app = socketio.ASGIApp(sio, other_asgi_app=fastapi_app)
+app = socketio.ASGIApp(sio, other_asgi_app=fastapi_app)  # noqa: F811
