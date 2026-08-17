@@ -1,7 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.config import settings
-from app.database import Base, engine
 from app.routers import auth_router, submissions_router, profile_router, notifications_router, uploads_router
 from app.socket import sio
 import socketio
