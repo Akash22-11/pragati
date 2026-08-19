@@ -29,31 +29,29 @@ def get_stats(db: Session) -> dict:
         ),
     }
 
-
 def get_stats_by_category(db: Session) -> list:
     """Submission count and verification rate per category."""
-    rows = db.query(
-        Submission.category,
-        func.count(Submission.id).label("total"),
-        func.sum(
-            func.cast(Submission.status == SubmissionStatus.approved, db.bind.dialect.name == "postgresql" and "integer" or "integer")
-        ).label("verified"),
-    ).group_by(Submission.category).all()
-
+    categories = db.query(Submission.category).distinct().all()
     results = []
-    for row in rows:
-        total = row.total or 0
-        verified = row.verified or 0
+    for (category,) in categories:
+        total = db.query(Submission).filter(Submission.category == category).count()
+        verified = db.query(Submission).filter(
+            Submission.category == category,
+            Submission.status == SubmissionStatus.approved,
+        ).count()
+        pending = db.query(Submission).filter(
+            Submission.category == category,
+            Submission.status == SubmissionStatus.pending,
+        ).count()
         results.append({
-            "category": row.category,
+            "category": category,
             "total": total,
             "verified": verified,
-            "pending": db.query(Submission).filter(
-                Submission.category == row.category,
-                Submission.status == SubmissionStatus.pending,
-            ).count(),
+            "pending": pending,
             "verification_rate": round((verified / total * 100) if total > 0 else 0, 1),
         })
+
+    return sorted(results, key=lambda x: x["total"], reverse=True)
 
     return sorted(results, key=lambda x: x["total"], reverse=True)
 

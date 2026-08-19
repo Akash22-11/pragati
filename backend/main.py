@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.config import settings
-from app.routers import auth_router, submissions_router, profile_router, notifications_router, uploads_router, pdf_router
+from app.routers import auth_router, submissions_router, profile_router, notifications_router, uploads_router, pdf_router, analytics_router, qr_router
 from app.socket import sio
 import socketio
 import app.models  # noqa: F401
@@ -27,6 +27,8 @@ fastapi_app.include_router(profile_router)
 fastapi_app.include_router(notifications_router)
 fastapi_app.include_router(uploads_router)
 fastapi_app.include_router(pdf_router)
+fastapi_app.include_router(analytics_router)
+fastapi_app.include_router(qr_router)
 
 
 @fastapi_app.get("/health")

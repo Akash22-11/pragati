@@ -4,3 +4,5 @@ from app.routers.profile import router as profile_router
 from app.routers.notifications import router as notifications_router
 from app.routers.uploads import router as uploads_router
 from app.routers.pdf import router as pdf_router
+from app.routers.analytics import router as analytics_router
+from app.routers.qr import router as qr_router
