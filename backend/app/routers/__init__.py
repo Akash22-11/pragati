@@ -6,3 +6,4 @@ from app.routers.uploads import router as uploads_router
 from app.routers.pdf import router as pdf_router
 from app.routers.analytics import router as analytics_router
 from app.routers.qr import router as qr_router
+from app.routers.bulk_upload import router as bulk_upload_router
