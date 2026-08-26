@@ -1,3 +1,5 @@
+import secrets
+import hashlib
 from datetime import datetime, timedelta
 from jose import JWTError, jwt
 from passlib.context import CryptContext
@@ -39,3 +41,39 @@ def create_user(db: Session, full_name: str, email: str, password: str, role, in
     db.commit()
     db.refresh(user)
     return user
+
+def generate_reset_token() -> tuple[str, str]:
+    """Generate a raw token (sent to user) and its hash (stored in DB)."""
+    raw_token = secrets.token_urlsafe(32)
+    token_hash = hashlib.sha256(raw_token.encode()).hexdigest()
+    return raw_token, token_hash
+
+
+def set_reset_token(db: Session, user: User) -> str:
+    """Generate and store a reset token for a user. Returns the raw token."""
+    raw_token, token_hash = generate_reset_token()
+    user.reset_token_hash = token_hash
+    user.reset_token_expires = datetime.utcnow() + timedelta(minutes=15)
+    db.commit()
+    return raw_token
+
+
+def verify_reset_token(db: Session, email: str, raw_token: str) -> User | None:
+    """Check a reset token is valid, not expired, and matches the user."""
+    user = get_user_by_email(db, email)
+    if not user or not user.reset_token_hash or not user.reset_token_expires:
+        return None
+    if user.reset_token_expires < datetime.utcnow():
+        return None
+    token_hash = hashlib.sha256(raw_token.encode()).hexdigest()
+    if token_hash != user.reset_token_hash:
+        return None
+    return user
+
+
+def reset_password(db: Session, user: User, new_password: str) -> None:
+    """Set a new password and invalidate the reset token."""
+    user.hashed_password = hash_password(new_password)
+    user.reset_token_hash = None
+    user.reset_token_expires = None
+    db.commit()

@@ -27,3 +27,9 @@ def send_verification_result(student_email, student_name, title, action, note=No
     subject = 'Pragati - Submission Update'
     body = '<h2>Hi ' + student_name + '</h2><p>Your submission ' + title + ' status: ' + str(action) + '</p>'
     send_email(student_email, subject, body)
+
+def send_password_reset_email(to_email, student_name, raw_token, base_url="http://localhost:5500"):
+    reset_link = base_url + "/pages/reset-password.html?token=" + raw_token + "&email=" + to_email
+    subject = "Pragati - Password Reset Request"
+    body = "<h2>Hi " + student_name + "</h2><p>Click the link below to reset your password. This link expires in 15 minutes.</p><p><a href=\"" + reset_link + "\">Reset Password</a></p><p>If you did not request this, please ignore this email.</p>"
+    send_email(to_email, subject, body)
