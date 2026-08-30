@@ -1,120 +1,99 @@
+<div align="center">
+
 # 🎓 Pragati
 
-<p align="center">
-  <strong>Centralized Student Activity & Verification Platform</strong>
-</p>
+### One Platform for Every Achievement
 
-<p align="center">
-  A digital platform to submit, verify, manage and authenticate student achievements.
-</p>
+A centralized platform to **submit, verify, and authenticate** student achievements — replacing scattered certificates, emails, and spreadsheets with a single verifiable digital record.
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white"/>
-  <img src="https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white"/>
-  <img src="https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white"/>
-  <img src="https://img.shields.io/badge/SQLAlchemy-D71F00?style=for-the-badge&logo=sqlalchemy&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Socket.IO-010101?style=for-the-badge&logo=socket.io&logoColor=white"/>
-</p>
+[![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
+[![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-D71F00?style=for-the-badge&logo=sqlalchemy&logoColor=white)](https://www.sqlalchemy.org/)
+[![Socket.IO](https://img.shields.io/badge/Socket.IO-010101?style=for-the-badge&logo=socket.io&logoColor=white)](https://socket.io/)
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Cloudinary-3448C5?style=flat-square&logo=cloudinary&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Alembic-4B5563?style=flat-square"/>
-  <img src="https://img.shields.io/badge/ReportLab-111827?style=flat-square"/>
-  <img src="https://img.shields.io/badge/GitHub_Actions-2088FF?style=flat-square&logo=github-actions&logoColor=white"/>
-</p>
+[![Cloudinary](https://img.shields.io/badge/Cloudinary-3448C5?style=flat-square&logo=cloudinary&logoColor=white)](https://cloudinary.com/)
+[![Alembic](https://img.shields.io/badge/Alembic-4B5563?style=flat-square)](https://alembic.sqlalchemy.org/)
+[![ReportLab](https://img.shields.io/badge/ReportLab-111827?style=flat-square)](https://www.reportlab.com/)
+[![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=flat-square&logo=github-actions&logoColor=white)](https://github.com/features/actions)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
+
+<br/>
+
+[**Quick Start**](#-quick-start) · [**Features**](#-features) · [**Architecture**](#️-architecture) · [**API**](#-api-overview) · [**Contributing**](#-contributing)
+
+</div>
 
 ---
 
-## 📌 About Pragati
+## 📌 Why Pragati?
 
-**Pragati** is a centralized student activity record platform designed to digitize the way educational institutions collect, verify, and manage student achievements.
+Student achievements today live everywhere *except* where they should:
 
-Students can submit proof of **certifications, internships, projects, competitions, research, extracurricular activities**, and other achievements.
+<div align="center">
 
-Faculty and administrators can review these submissions through a structured verification workflow. Once verified, records receive a **tamper-evident verification hash and QR code**, allowing their authenticity to be checked independently.
+`📧 Emails` &nbsp;→&nbsp; `📁 Drive Folders` &nbsp;→&nbsp; `📊 Spreadsheets` &nbsp;→&nbsp; `🗄️ Department Records`
 
-### The goal
+</div>
 
-Instead of keeping student achievements scattered across:
-
-`Certificates` • `Emails` • `Spreadsheets` • `Drive Folders` • `Department Records`
-
-Pragati provides a centralized and verifiable digital record.
+That makes verification slow, records easy to lose, and authenticity hard to prove. **Pragati** fixes this by giving institutions a single workflow: students submit proof of certifications, internships, projects, competitions, and research; faculty review and verify it; and every verified record gets a **tamper-evident hash and QR code** anyone can check.
 
 ---
 
 ## ✨ Features
 
-### 👨‍🎓 Student Management
+<table>
+<tr>
+<td width="33%" valign="top">
 
-Students can:
+### 👨‍🎓 For Students
+- Build a personal achievement profile
+- Submit activities & upload certificates
+- Track submission status in real time
+- Get instant notifications
+- Export verified records as PDF
 
-* Create and manage their profile
-* Submit academic and extracurricular activities
-* Upload certificates and supporting documents
-* Track submission status
-* Receive real-time notifications
-* Access verified records
-* Generate PDF records
+</td>
+<td width="33%" valign="top">
 
-### 🧑‍🏫 Faculty & Admin Verification
+### 🧑‍🏫 For Faculty & Admins
+- Review pending submissions
+- Approve, reject, or return for correction
+- Inspect uploaded evidence
+- Monitor verification activity
+- Manage student records at scale
 
-Authorized users can:
+</td>
+<td width="33%" valign="top">
 
-* View pending submissions
-* Review uploaded evidence
-* Approve submissions
-* Reject submissions
-* Return submissions for correction
-* Monitor verification activity
-* Manage student records
+### 🔐 Trust & Verification
+- Unique verification hash per record
+- Scannable QR code authentication
+- Public verification endpoint
+- Structured, exportable PDF records
+- Full audit trail
 
-### 🔐 Verification & Authenticity
-
-Every approved submission generates a unique **verification hash**.
-
-Verified records can also be represented using a **QR code**, allowing anyone with access to the verification endpoint to validate the record.
-
-### 📄 PDF Generation
-
-Verified student activity records can be converted into structured PDF documents using **ReportLab**.
+</td>
+</tr>
+</table>
 
 ### ⚡ Real-Time Notifications
 
-Pragati uses **Socket.IO** to notify users when important events occur.
-
-For example:
+Powered by **Socket.IO**, so nobody has to refresh a page to know what happened:
 
 ```text
-Faculty approves submission
-        ↓
-Backend updates status
-        ↓
-Socket.IO event
-        ↓
-Student receives notification
+Faculty approves submission → Backend updates status → Socket.IO event → Student notified instantly
 ```
 
-### ☁️ File Management
+### ☁️ File Storage & 📊 Analytics
 
-Certificates and supporting documents are uploaded to **Cloudinary**, keeping application storage separate from file storage.
-
-### 📊 Analytics
-
-The system can track:
-
-* Total submissions
-* Pending submissions
-* Verified submissions
-* Rejected submissions
-* Activity categories
-* Verification statistics
+Certificates are uploaded to **Cloudinary**, keeping large files out of the application database. Meanwhile, the platform tracks totals, pending/verified/rejected counts, and category-level statistics — everything an institution needs to see engagement at a glance.
 
 ---
 
-# 🏗️ Architecture
+## 🏗️ Architecture
 
-Pragati follows a layered backend architecture designed to keep API handling, business logic, and database operations separated.
+Pragati uses a layered backend that keeps API handling, business logic, and data access cleanly separated.
 
 ```text
                          ┌──────────────────┐
@@ -150,311 +129,119 @@ Pragati follows a layered backend architecture designed to keep API handling, bu
       └──────────────┘          └──────────────┘
 ```
 
----
-
-# 🔄 Verification Workflow
+### 🔄 Verification Workflow
 
 ```text
-Student
-   │
-   ▼
-Submit Activity
-   │
-   ▼
-Upload Evidence
-   │
-   ▼
-┌─────────────┐
-│   PENDING   │
-└──────┬──────┘
-       │
-       ▼
-Faculty / Admin Review
-       │
-   ┌───┼────────┐
-   │   │        │
-   ▼   ▼        ▼
-Approve Reject  Return
-   │              │
-   │              └──→ Student Correction
-   │
-   ▼
-Generate Verification Hash
-   │
-   ▼
-Generate QR Code
-   │
-   ▼
-Verified Activity
-   │
-   ├──────────────┐
-   ▼              ▼
-PDF Export    QR Verification
+ Student                                          
+    │ Submit Activity + Upload Evidence            
+    ▼                                               
+ ┌─────────────┐                                    
+ │   PENDING   │                                    
+ └──────┬──────┘                                    
+        │ Faculty / Admin Review                    
+    ┌───┼────────────┐                              
+    ▼   ▼             ▼                             
+ Approve Reject     Return → back to Student        
+    │                                                
+    ▼                                                
+ Generate Verification Hash → Generate QR Code       
+    │                                                
+    ▼                                                
+ ✅ Verified Activity → PDF Export & QR Verification 
 ```
+
+### 🔑 Authentication & Roles
+
+Pragati uses **JWT-based authentication** with role-based access control (RBAC):
+
+| Role | Can do |
+|---|---|
+| 🎓 **Student** | Create submissions, upload documents, track own records |
+| 🧑‍🏫 **Faculty** | Review & verify activities, manage the verification queue |
+| 🛡️ **Admin** | Full system management, user management, verification oversight |
 
 ---
 
-# 🛠️ Tech Stack
+## 🛠️ Tech Stack
 
-## Backend
+<table>
+<tr>
+<td valign="top">
 
-| Technology     | Purpose                     |
-| -------------- | --------------------------- |
-| **Python**     | Core backend language       |
-| **FastAPI**    | REST API framework          |
-| **SQLAlchemy** | Database ORM                |
-| **Alembic**    | Database migrations         |
-| **PostgreSQL** | Primary relational database |
-| **JWT**        | Authentication              |
-| **Passlib**    | Password hashing            |
-| **Socket.IO**  | Real-time communication     |
-| **Cloudinary** | Certificate/file storage    |
-| **ReportLab**  | PDF generation              |
-| **qrcode**     | QR code generation          |
-| **Pandas**     | Data processing/export      |
-| **OpenPyXL**   | Excel export                |
+**Backend**
 
-## Frontend
+| Tech | Purpose |
+|---|---|
+| Python | Core language |
+| FastAPI | REST API framework |
+| SQLAlchemy | Database ORM |
+| Alembic | Migrations |
+| PostgreSQL | Primary database |
+| JWT + Passlib | Auth & password hashing |
+| Socket.IO | Real-time events |
+| Cloudinary | File storage |
+| ReportLab | PDF generation |
+| qrcode | QR generation |
+| Pandas / OpenPyXL | Data & Excel export |
 
-```text
-HTML5
-CSS3
-Vanilla JavaScript
-```
+</td>
+<td valign="top">
 
-The frontend communicates with the FastAPI backend through REST APIs and Socket.IO.
+**Frontend**
 
-## DevOps
+- HTML5
+- CSS3
+- Vanilla JavaScript
 
-```text
-GitHub Actions
-    │
-    ├── Backend CI
-    ├── Pull Request Checks
-    ├── Security Scanning
-    └── Deployment
-```
+Communicates with the backend via REST APIs and Socket.IO.
 
----
+**DevOps**
 
-# 📂 Project Structure
+- GitHub Actions
+- Backend CI
+- Pull request checks
+- Security scanning
+- Automated deployment
 
-```text
-pragati/
-│
-├── backend/
-│   ├── main.py
-│   │
-│   ├── app/
-│   │   ├── routers/
-│   │   │   └── API route definitions
-│   │   │
-│   │   ├── services/
-│   │   │   ├── authentication
-│   │   │   ├── submissions
-│   │   │   ├── verification
-│   │   │   ├── PDF generation
-│   │   │   ├── QR generation
-│   │   │   └── email
-│   │   │
-│   │   ├── models/
-│   │   │   └── SQLAlchemy models
-│   │   │
-│   │   ├── schemas/
-│   │   │   └── Pydantic schemas
-│   │   │
-│   │   ├── dependencies/
-│   │   │   └── Authentication & RBAC
-│   │   │
-│   │   ├── config.py
-│   │   ├── database.py
-│   │   └── socket.py
-│   │
-│   ├── alembic/
-│   │   └── Database migrations
-│   │
-│   └── requirements.txt
-│
-└── frontend/
-    ├── index.html
-    ├── pages/
-    │   ├── login
-    │   ├── dashboard
-    │   ├── queue
-    │   └── verify
-    ├── js/
-    │   └── API & authentication logic
-    └── css/
-```
+</td>
+</tr>
+</table>
 
 ---
 
-# 🔑 Authentication & Authorization
+## 🚀 Quick Start
 
-Pragati uses **JWT-based authentication** combined with role-based access control.
+### Prerequisites
 
-```text
-Login
-  ↓
-Validate Credentials
-  ↓
-Generate JWT
-  ↓
-Client Stores Token
-  ↓
-Authenticated API Request
-  ↓
-Verify Token
-  ↓
-Check User Role
-  ↓
-Allow / Deny Access
-```
+Make sure you have these installed:
 
-### Roles
+- ✅ Python **3.10+**
+- ✅ PostgreSQL
+- ✅ Git
 
-```text
-STUDENT
-   │
-   ├── Create submissions
-   ├── Upload documents
-   └── Track own records
-
-FACULTY
-   │
-   ├── Review submissions
-   ├── Verify activities
-   └── Manage verification queue
-
-ADMIN
-   │
-   ├── System management
-   ├── User management
-   └── Verification oversight
-```
-
----
-
-# 🗄️ Data Layer
-
-PostgreSQL acts as the primary source of structured application data.
-
-SQLAlchemy provides ORM-based database access, while Alembic manages schema changes.
-
-The database contains information related to:
-
-* Users
-* Roles
-* Student profiles
-* Activity submissions
-* Verification status
-* Verification hashes
-* Notifications
-* Uploaded document metadata
-
-Large certificate files are stored separately in Cloudinary while their references are maintained in the database.
-
----
-
-# 🔌 API Overview
-
-| Endpoint         | Description                             |
-| ---------------- | --------------------------------------- |
-| `/auth`          | Registration, login & token refresh     |
-| `/submissions`   | Create, retrieve and manage submissions |
-| `/profile`       | Student/user profile management         |
-| `/notifications` | Notification management                 |
-| `/uploads`       | Certificate and file uploads            |
-| `/pdf`           | PDF generation                          |
-| `/health`        | Application health check                |
-
-FastAPI automatically provides interactive API documentation through:
-
-```text
-http://localhost:8000/docs
-```
-
----
-
-# 📊 Data Flow
-
-```text
-Student
-   │
-   ├── Activity Information
-   │
-   └── Supporting Certificate
-              │
-              ▼
-         Cloudinary
-              │
-              ▼
-          FastAPI API
-              │
-              ▼
-          PostgreSQL
-              │
-              ▼
-       Faculty / Admin
-              │
-        ┌─────┴─────┐
-        ▼           ▼
-    Approved      Rejected
-        │
-        ▼
- Verification Hash
-        │
-        ├──────→ QR Code
-        │
-        └──────→ PDF Record
-```
-
----
-
-# 🚀 Getting Started
-
-## Prerequisites
-
-* Python **3.10+**
-* PostgreSQL
-* Git
-
-## Clone
+### 1. Clone the repository
 
 ```bash
 git clone https://github.com/YOUR_USERNAME/pragati.git
 cd pragati
 ```
 
-## Backend Setup
+### 2. Set up the backend
 
 ```bash
 cd backend
-
 python -m venv venv
-```
 
-### Windows
-
-```bash
+# Windows
 venv\Scripts\activate
-```
 
-### Linux / macOS
-
-```bash
+# Linux / macOS
 source venv/bin/activate
-```
 
-Install dependencies:
-
-```bash
 pip install -r requirements.txt
 ```
 
----
-
-## Environment Variables
+### 3. Configure environment variables
 
 Create a `.env` file inside `backend/`:
 
@@ -473,87 +260,118 @@ MAIL_PASSWORD=your-app-password
 ADMIN_EMAIL=admin@example.com
 ```
 
-> **Important:** Never commit `.env` files or production credentials to GitHub.
+> ⚠️ **Never commit `.env` files or production credentials to GitHub.**
 
----
-
-## Database Migration
+### 4. Run database migrations
 
 ```bash
 alembic upgrade head
 ```
 
-## Run Backend
+### 5. Start the backend
 
 ```bash
 uvicorn main:app --reload
 ```
 
-Backend:
+Your API is now live at **http://localhost:8000** 🎉
+Interactive docs (Swagger UI) at **http://localhost:8000/docs**
 
-```text
-http://localhost:8000
-```
-
-API documentation:
-
-```text
-http://localhost:8000/docs
-```
-
----
-
-# 🌐 Frontend Setup
-
-The frontend is a static HTML/CSS/JavaScript application.
+### 6. Start the frontend
 
 ```bash
 cd frontend
 python -m http.server 5500
 ```
 
-Open:
+Open **http://localhost:5500** in your browser.
+
+---
+
+## 📂 Project Structure
 
 ```text
-http://localhost:5500
+pragati/
+│
+├── backend/
+│   ├── main.py
+│   │
+│   ├── app/
+│   │   ├── routers/        → API route definitions
+│   │   ├── services/       → auth, submissions, verification, PDF/QR, email
+│   │   ├── models/         → SQLAlchemy models
+│   │   ├── schemas/        → Pydantic schemas
+│   │   ├── dependencies/   → Authentication & RBAC
+│   │   ├── config.py
+│   │   ├── database.py
+│   │   └── socket.py
+│   │
+│   ├── alembic/            → Database migrations
+│   └── requirements.txt
+│
+└── frontend/
+    ├── index.html
+    ├── pages/               → login, dashboard, queue, verify
+    ├── js/                  → API & authentication logic
+    └── css/
 ```
 
 ---
 
-# 🔒 Security
+## 🔌 API Overview
 
-Pragati includes several security mechanisms:
+| Endpoint | Description |
+|---|---|
+| `/auth` | Registration, login & token refresh |
+| `/submissions` | Create, retrieve and manage submissions |
+| `/profile` | Student/user profile management |
+| `/notifications` | Notification management |
+| `/uploads` | Certificate and file uploads |
+| `/pdf` | PDF generation |
+| `/health` | Application health check |
 
-* JWT authentication
-* Password hashing
-* Role-based authorization
-* Protected API routes
-* Environment-based configuration
-* Verification hashes
-* Secure cloud file storage
-* CI/CD security checks
-
-Sensitive credentials should always be supplied through environment variables.
-
----
-
-# 📈 Future Roadmap
-
-* [ ] Advanced analytics dashboard
-* [ ] Bulk submission verification
-* [ ] Digital student portfolio generation
-* [ ] Institution-wide dashboards
-* [ ] Advanced QR verification portal
-* [ ] Automated certificate metadata extraction
-* [ ] AI-assisted document classification
-* [ ] Improved reporting and exports
-* [ ] Mobile-first interface
+Full interactive API documentation is auto-generated by FastAPI at `/docs`.
 
 ---
 
-# 🤝 Contributing
+## 🗄️ Data Layer
 
-Contributions are welcome.
+PostgreSQL is the system of record, accessed through SQLAlchemy's ORM and versioned with Alembic migrations. It stores users, roles, student profiles, submissions, verification status/hashes, notifications, and document metadata — while the certificate files themselves live in Cloudinary, referenced by URL.
+
+---
+
+## 🔒 Security
+
+- 🔑 JWT authentication
+- 🔒 Password hashing (Passlib)
+- 🛡️ Role-based authorization
+- 🚧 Protected API routes
+- 🌍 Environment-based configuration
+- #️⃣ Tamper-evident verification hashes
+- ☁️ Secure cloud file storage
+- 🤖 CI/CD security checks
+
+Sensitive credentials should **always** be supplied through environment variables, never hardcoded.
+
+---
+
+## 📈 Roadmap
+
+- [ ] Advanced analytics dashboard
+- [ ] Bulk submission verification
+- [ ] Digital student portfolio generation
+- [ ] Institution-wide dashboards
+- [ ] Advanced QR verification portal
+- [ ] Automated certificate metadata extraction
+- [ ] AI-assisted document classification
+- [ ] Improved reporting and exports
+- [ ] Mobile-first interface
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! To get started:
 
 ```bash
 git checkout -b feature/your-feature
@@ -562,24 +380,20 @@ git commit -m "feat: add your feature"
 git push origin feature/your-feature
 ```
 
-Then open a Pull Request.
-
-For major changes, please open an issue first to discuss the proposed implementation.
+Then open a Pull Request. For major changes, please open an issue first to discuss what you'd like to change.
 
 ---
 
-# 📜 License
+## 📜 License
 
-This project is licensed under the **MIT License**.
-
-See [`LICENSE`](LICENSE) for details.
+This project is licensed under the **MIT License** — see [`LICENSE`](LICENSE) for details.
 
 ---
 
-<p align="center">
-  <strong>Pragati — One platform for every achievement.</strong>
-</p>
+<div align="center">
 
-<p align="center">
-  Built with Python • FastAPI • PostgreSQL • JavaScript
-</p>
+**Pragati — One platform for every achievement.** 🎓
+
+Built with 🐍 Python · ⚡ FastAPI · 🐘 PostgreSQL · 🌐 JavaScript
+
+</div>
