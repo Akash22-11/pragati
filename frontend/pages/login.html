@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Pragati | Student Portal</title>
+
+
+    <!-- Google Fonts -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Libre+Baskerville:wght@400;700&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+
+
+    <!-- CSS -->
+
+    <link rel="stylesheet" href="Login.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- ==================================================
+     MAIN AUTH CONTAINER
+================================================== -->
+
+    <div class="auth-container">
+
+
+        <!-- ==================================================
+         LEFT BRANDING PANEL
+    ================================================== -->
+
+        <section class="branding-panel">
+
+
+            <!-- Logo -->
+
+            <div class="logo-box">
+
+                <div class="logo-icon">
+                    ◆
+                </div>
+
+                <div>
+
+                    <h1>
+                        Pragati
+                    </h1>
+
+                    <p>
+                        Student Portal
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Main Text -->
+
+            <div class="branding-content">
+
+                <span class="eyebrow">
+                    ACADEMIC · PROFESSIONAL · DIGITAL
+                </span>
+
+
+                <h2>
+                    Your journey.
+                    <br>
+                    <span>Verified.</span>
+                </h2>
+
+
+                <p>
+                    One secure place to manage your academic
+                    journey, achievements, courses and
+                    digital credentials.
+                </p>
+
+            </div>
+
+
+            <!-- Features -->
+
+            <div class="feature-list">
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        ✓
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Academic Records
+                        </strong>
+
+                        <span>
+                            Access your complete academic profile
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        ✓
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Verified Achievements
+                        </strong>
+
+                        <span>
+                            Showcase your achievements and credentials
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        ✓
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Digital Transcript
+                        </strong>
+
+                        <span>
+                            Share your verified academic transcript
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="branding-footer">
+
+                © 2026 Pragati | Team Delta
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==================================================
+         RIGHT AUTH PANEL
+    ================================================== -->
+
+        <section class="auth-panel">
+
+
+            <div class="auth-box">
+
+
+                <!-- Mobile Logo -->
+
+                <div class="mobile-logo">
+
+                    <div class="mobile-logo-icon">
+                        ◆
+                    </div>
+
+                    <span>
+                        Web Pragati
+                    </span>
+
+                </div>
+
+
+                <!-- ==================================================
+                 LOGIN FORM
+            ================================================== -->
+
+                <div class="form-container active" id="loginFormContainer">
+
+
+                    <div class="form-heading">
+
+                        <span class="small-label">
+                            WELCOME BACK
+                        </span>
+
+                        <h2>
+                            Sign in to your account
+                        </h2>
+
+                        <p>
+                            Continue your academic journey.
+                        </p>
+
+                    </div>
+
+
+                    <form id="loginForm" novalidate>
+
+
+                        <!-- Email -->
+
+                        <div class="input-group">
+
+                            <label for="loginEmail">
+                                Email Address
+                            </label>
+
+                            <div class="input-wrapper">
+
+                                <span class="input-icon">
+                                    @
+                                </span>
+
+                                <input type="email" id="loginEmail" placeholder="you@example.com" autocomplete="email">
+
+                            </div>
+
+                            <small class="error" id="loginEmailError"></small>
+
+                        </div>
+
+
+                        <!-- Password -->
+
+                        <div class="input-group">
+
+                            <div class="label-row">
+
+                                <label for="loginPassword">
+                                    Password
+                                </label>
+
+                                <a href="#" id="forgotPassword">
+                                    Forgot password?
+                                </a>
+
+                            </div>
+
+
+                            <div class="input-wrapper">
+
+                                <span class="input-icon">
+                                    •••
+                                </span>
+
+                                <input type="password" id="loginPassword" placeholder="Enter your password"
+                                    autocomplete="current-password">
+
+                                <button type="button" class="password-toggle" data-target="loginPassword">
+                                    Show
+                                </button>
+
+                            </div>
+
+                            <small class="error" id="loginPasswordError"></small>
+
+                        </div>
+
+
+                        <!-- Remember -->
+
+                        <div class="remember-row">
+
+                            <label class="checkbox-container">
+
+                                <input type="checkbox" id="rememberMe">
+
+                                <span class="custom-checkbox">
+                                </span>
+
+                                Remember me
+
+                            </label>
+
+                        </div>
+
+
+                        <!-- Login Button -->
+
+                        <button type="submit" class="primary-button">
+
+                            Sign In
+
+                            <span>
+                                →
+                            </span>
+
+                        </button>
+
+
+                    </form>
+
+
+                    <!-- Divider -->
+
+                    <div class="divider">
+
+                        <span>
+                            OR
+                        </span>
+
+                    </div>
+
+
+                    <!-- Demo Login -->
+
+                    <button class="demo-button" id="demoLogin">
+
+                        <span>
+                            Try Demo Account
+                        </span>
+
+                        <small>
+                            arjun.sharma@webpragati.edu.in
+                        </small>
+
+                    </button>
+
+
+                    <!-- Signup -->
+
+                    <div class="switch-text">
+
+                        Don't have an account?
+
+                        <button type="button" id="showSignup">
+                            Create Account
+                        </button>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- ==================================================
+                 SIGN UP FORM
+            ================================================== -->
+
+                <div class="form-container" id="signupFormContainer">
+
+
+                    <div class="form-heading">
+
+                        <span class="small-label">
+                            GET STARTED
+                        </span>
+
+                        <h2>
+                            Create your account
+                        </h2>
+
+                        <p>
+                            Join Pragati and build your verified profile.
+                        </p>
+
+                    </div>
+
+
+                    <form id="signupForm" novalidate>
+
+
+                        <!-- Name -->
+
+                        <div class="input-group">
+
+                            <label for="signupName">
+                                Full Name
+                            </label>
+
+                            <div class="input-wrapper">
+
+                                <span class="input-icon">
+                                    A
+                                </span>
+
+                                <input type="text" id="signupName" placeholder="Your full name" autocomplete="name">
+
+                            </div>
+
+                            <small class="error" id="signupNameError"></small>
+
+                        </div>
+
+
+                        <!-- Email -->
+
+                        <div class="input-group">
+
+                            <label for="signupEmail">
+                                Student Email
+                            </label>
+
+                            <div class="input-wrapper">
+
+                                <span class="input-icon">
+                                    @
+                                </span>
+
+                                <input type="email" id="signupEmail" placeholder="student@example.edu"
+                                    autocomplete="email">
+
+                            </div>
+
+                            <small class="error" id="signupEmailError"></small>
+
+                        </div>
+
+
+                        <!-- Roll Number -->
+
+                        <div class="input-group">
+
+                            <label for="rollNumber">
+                                Roll Number
+                            </label>
+
+                            <div class="input-wrapper">
+
+                                <span class="input-icon">
+                                    #
+                                </span>
+
+                                <input type="text" id="rollNumber" placeholder="e.g. GCECTB-R25-2001">
+
+                            </div>
+
+                            <small class="error" id="rollNumberError"></small>
+
+                        </div>
+
+
+                        <!-- Password -->
+
+                        <div class="input-group">
+
+                            <label for="signupPassword">
+                                Password
+                            </label>
+
+                            <div class="input-wrapper">
+
+                                <span class="input-icon">
+                                    •••
+                                </span>
+
+                                <input type="password" id="signupPassword" placeholder="Create a strong password"
+                                    autocomplete="new-password">
+
+                                <button type="button" class="password-toggle" data-target="signupPassword">
+                                    Show
+                                </button>
+
+                            </div>
+
+
+                            <!-- Password strength -->
+
+                            <div class="password-strength" id="passwordStrength">
+
+                                <div class="strength-bars">
+
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+
+                                </div>
+
+                                <small id="strengthText">
+                                    Use 8+ characters
+                                </small>
+
+                            </div>
+
+
+                            <small class="error" id="signupPasswordError"></small>
+
+                        </div>
+
+
+                        <!-- Confirm Password -->
+
+                        <div class="input-group">
+
+                            <label for="confirmPassword">
+                                Confirm Password
+                            </label>
+
+                            <div class="input-wrapper">
+
+                                <span class="input-icon">
+                                    ✓
+                                </span>
+
+                                <input type="password" id="confirmPassword" placeholder="Repeat your password"
+                                    autocomplete="new-password">
+
+                                <button type="button" class="password-toggle" data-target="confirmPassword">
+                                    Show
+                                </button>
+
+                            </div>
+
+                            <small class="error" id="confirmPasswordError"></small>
+
+                        </div>
+
+
+                        <!-- Terms -->
+
+                        <label class="terms-checkbox">
+
+                            <input type="checkbox" id="terms">
+
+                            <span class="custom-checkbox">
+                            </span>
+
+                            <span>
+                                I agree to the
+                                <a href="#">
+                                    Terms of Service
+                                </a>
+                                and
+                                <a href="#">
+                                    Privacy Policy
+                                </a>.
+                            </span>
+
+                        </label>
+
+
+                        <small class="error" id="termsError"></small>
+
+
+                        <!-- Signup Button -->
+
+                        <button type="submit" class="primary-button">
+
+                            Create Account
+
+                            <span>
+                                →
+                            </span>
+
+                        </button>
+
+
+                    </form>
+
+
+                    <!-- Login -->
+
+                    <div class="switch-text">
+
+                        Already have an account?
+
+                        <button type="button" id="showLogin">
+                            Sign In
+                        </button>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+    </div>
+
+
+    <!-- ==================================================
+     SUCCESS MODAL
+================================================== -->
+
+    <div class="modal-overlay" id="successModal">
+
+
+        <div class="success-modal">
+
+            <div class="success-icon">
+                ✓
+            </div>
+
+            <h2>
+                Account Created
+            </h2>
+
+            <p>
+                Your Pragati account has been created
+                successfully.
+            </p>
+
+            <button class="primary-button" id="continueButton">
+                Continue
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==================================================
+     TOAST
+================================================== -->
+
+    <div class="toast" id="toast">
+    </div>
+
+
+    <!-- JavaScript -->
+
+    <script src="Login.js"></script>
+
+</body>
+
+</html>
