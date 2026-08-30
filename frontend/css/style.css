@@ -1,0 +1,1765 @@
+/* =====================================================
+   ROOT VARIABLES
+===================================================== */
+
+:root {
+
+    --navy: #102443;
+    --dark-navy: #0c1f3b;
+
+    --cream: #f7f2e9;
+
+    --white: #ffffff;
+
+    --text: #09244a;
+    --muted: #8095b4;
+
+    --border: #e1d8ca;
+
+    --teal: #08a89e;
+    --teal-dark: #0c625f;
+
+    --cyan: #54eee0;
+    --gold: #ffbe2e;
+    --purple: #a98dff;
+
+    --green: #08a957;
+
+}
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+
+    background: var(--cream);
+
+    color: var(--text);
+
+    font-family: "DM Sans", sans-serif;
+
+    min-height: 100vh;
+
+}
+
+
+button {
+
+    font-family: inherit;
+
+}
+
+
+/* =====================================================
+   NAVBAR
+===================================================== */
+
+.navbar {
+
+    height: 76px;
+
+    background: var(--navy);
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 31px;
+
+}
+
+
+/* BRAND */
+
+.brand-section {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+}
+
+
+.brand-icon {
+
+    width: 38px;
+
+    height: 38px;
+
+    background: #079f98;
+
+    border-radius: 9px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+}
+
+
+.brand-icon span {
+
+    font-size: 18px;
+
+}
+
+
+.brand-name {
+
+    font-family: "Libre Baskerville", serif;
+
+    font-size: 20px;
+
+    font-weight: 700;
+
+}
+
+
+.brand-divider {
+
+    color: #506888;
+
+    font-size: 18px;
+
+}
+
+
+.portal-name {
+
+    color: #536a8b;
+
+    font-size: 16px;
+
+}
+
+
+/* USER */
+
+.user-section {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+}
+
+
+.user-email {
+
+    color: #b9c8dc;
+
+    font-size: 14px;
+
+}
+
+
+.user-avatar {
+
+    width: 42px;
+
+    height: 42px;
+
+    border-radius: 50%;
+
+    background: #079d99;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-weight: 700;
+
+}
+
+
+/* =====================================================
+   MAIN CONTAINER
+===================================================== */
+
+.main-container {
+
+    padding: 40px 31px 70px;
+
+    max-width: 1500px;
+
+    margin: auto;
+
+}
+
+
+/* =====================================================
+   PROFILE CARD
+===================================================== */
+
+.profile-card {
+
+    min-height: 221px;
+
+    padding: 42px 47px;
+
+    border-radius: 21px;
+
+    background:
+
+        radial-gradient(
+            circle at 90% 70%,
+            rgba(42, 76, 120, 0.45) 0 12%,
+            transparent 12.2%
+        ),
+
+        radial-gradient(
+            circle at 88% 58%,
+            rgba(10, 67, 98, 0.4) 0 19%,
+            transparent 19.2%
+        ),
+
+        var(--navy);
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 30px;
+
+}
+
+
+/* PROFILE LEFT */
+
+.profile-left {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 36px;
+
+}
+
+
+.large-avatar {
+
+    width: 114px;
+
+    height: 114px;
+
+    flex-shrink: 0;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #139e99,
+            #2d4c91
+        );
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-family: "Libre Baskerville", serif;
+
+    font-size: 34px;
+
+    font-weight: 700;
+
+}
+
+
+.profile-information {
+
+    padding-top: 2px;
+
+}
+
+
+/* NAME */
+
+.name-container {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+}
+
+
+.name-container h1 {
+
+    font-family: "Libre Baskerville", serif;
+
+    font-size: 32px;
+
+    line-height: 1.2;
+
+}
+
+
+.active-badge {
+
+    border: 1px solid #00b9a9;
+
+    background: rgba(0, 184, 169, 0.1);
+
+    color: #11d7c5;
+
+    border-radius: 5px;
+
+    padding: 5px 10px;
+
+    font-family: "Space Mono", monospace;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+}
+
+
+/* DEGREE */
+
+.degree {
+
+    color: #9db4d4;
+
+    font-size: 16px;
+
+    margin-top: 9px;
+
+    margin-bottom: 22px;
+
+}
+
+
+/* DETAILS */
+
+.student-details {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, max-content);
+
+    gap: 31px;
+
+}
+
+
+.detail {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+
+}
+
+
+.detail-label {
+
+    color: #62799d;
+
+    font-family: "Space Mono", monospace;
+
+    font-size: 11px;
+
+}
+
+
+.detail-value {
+
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+}
+
+
+/* =====================================================
+   STATISTICS
+===================================================== */
+
+.statistics {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 112px);
+
+    gap: 24px;
+
+}
+
+
+.stat-card {
+
+    height: 124px;
+
+    border-radius: 16px;
+
+    border: 1px solid rgba(
+        180,
+        200,
+        225,
+        0.18
+    );
+
+    background: rgba(
+        255,
+        255,
+        255,
+        0.04
+    );
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+}
+
+
+.stat-number {
+
+    font-family: "Libre Baskerville", serif;
+
+    font-size: 31px;
+
+    font-weight: 700;
+
+}
+
+
+.stat-total {
+
+    color: #92a9ca;
+
+    font-family: "Space Mono", monospace;
+
+    font-size: 11px;
+
+    margin-top: 4px;
+
+}
+
+
+.stat-label {
+
+    color: #acbdd3;
+
+    font-size: 13px;
+
+    margin-top: 12px;
+
+}
+
+
+.cyan {
+
+    color: var(--cyan);
+
+}
+
+
+.gold {
+
+    color: var(--gold);
+
+}
+
+
+.purple {
+
+    color: var(--purple);
+
+}
+
+
+/* =====================================================
+   TRANSCRIPT
+===================================================== */
+
+.transcript-section {
+
+    min-height: 109px;
+
+    margin-top: 31px;
+
+    padding: 25px 38px;
+
+    border-radius: 17px;
+
+    background:
+        linear-gradient(
+            105deg,
+            #0d9f98,
+            #115e5c
+        );
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 25px;
+
+    box-shadow:
+        0 12px 25px
+        rgba(
+            10,
+            130,
+            125,
+            0.16
+        );
+
+}
+
+
+/* DOCUMENT */
+
+.document-icon {
+
+    width: 62px;
+
+    height: 57px;
+
+    border-radius: 13px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.13
+        );
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 27px;
+
+}
+
+
+/* INFORMATION */
+
+.transcript-information {
+
+    flex: 1;
+
+    min-width: 0;
+
+}
+
+
+.transcript-heading {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+}
+
+
+.transcript-heading h2 {
+
+    font-size: 18px;
+
+}
+
+
+.verified-badge {
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.15
+        );
+
+    border-radius: 5px;
+
+    padding: 5px 9px;
+
+    font-family: "Space Mono", monospace;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+}
+
+
+.transcript-link {
+
+    margin-top: 9px;
+
+    color: #d2f4ef;
+
+    font-family: "Space Mono", monospace;
+
+    font-size: 13px;
+
+    overflow-wrap: anywhere;
+
+}
+
+
+/* BUTTONS */
+
+.transcript-buttons {
+
+    display: flex;
+
+    gap: 10px;
+
+}
+
+
+.copy-button,
+.view-button {
+
+    height: 48px;
+
+    padding: 0 20px;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    font-weight: 600;
+
+}
+
+
+.copy-button {
+
+    color: white;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.08
+        );
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.35
+        );
+
+}
+
+
+.view-button {
+
+    color: #12605f;
+
+    background: white;
+
+    border: 1px solid white;
+
+}
+
+
+/* =====================================================
+   TABS
+===================================================== */
+
+.tabs {
+
+    height: 93px;
+
+    border-bottom:
+        1px solid
+        var(--border);
+
+    display: flex;
+
+    align-items: flex-end;
+
+    gap: 10px;
+
+}
+
+
+.tab {
+
+    position: relative;
+
+    border: none;
+
+    background: transparent;
+
+    color: #8499b8;
+
+    cursor: pointer;
+
+    padding:
+        0 25px
+        16px;
+
+    font-size: 16px;
+
+}
+
+
+.tab.active {
+
+    color: #0b203e;
+
+    font-weight: 700;
+
+}
+
+
+.tab.active::after {
+
+    content: "";
+
+    position: absolute;
+
+    bottom: -1px;
+
+    left: 0;
+
+    right: 0;
+
+    height: 2px;
+
+    background: var(--teal);
+
+}
+
+
+/* =====================================================
+   PAGE HEADING
+===================================================== */
+
+.page-heading {
+
+    margin-top: 40px;
+
+    margin-bottom: 27px;
+
+}
+
+
+.page-heading h2 {
+
+    font-family:
+        "Libre Baskerville",
+        serif;
+
+    font-size: 27px;
+
+    margin-bottom: 10px;
+
+}
+
+
+.page-heading p {
+
+    color: #8096b6;
+
+    font-size: 15px;
+
+}
+
+
+/* =====================================================
+   ACHIEVEMENT GRID
+===================================================== */
+
+.achievement-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+
+}
+
+
+/* CARD */
+
+.achievement-card {
+
+    min-height: 203px;
+
+    padding:
+        26px 29px 22px;
+
+    background: white;
+
+    border:
+        1px solid
+        #ded6c9;
+
+    border-radius: 16px;
+
+    position: relative;
+
+    overflow: hidden;
+
+}
+
+
+.achievement-card::after {
+
+    content: "";
+
+    position: absolute;
+
+    top: -1px;
+
+    right: -1px;
+
+    width: 51px;
+
+    height: 51px;
+
+    background: #d9f8e7;
+
+    clip-path:
+        polygon(
+            0 0,
+            100% 0,
+            100% 100%
+        );
+
+}
+
+
+/* TOP */
+
+.card-top {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+}
+
+
+.tag {
+
+    padding: 7px 10px;
+
+    border-radius: 6px;
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+}
+
+
+.tag-hackathon {
+
+    background: #fff0c4;
+
+    color: #ae5b00;
+
+}
+
+
+.tag-programming {
+
+    background: #e9e4ff;
+
+    color: #4f3dc1;
+
+}
+
+
+.tag-certification {
+
+    background: #d9f8e7;
+
+    color: #08713e;
+
+}
+
+
+.tag-open-source {
+
+    background: #dbe8ff;
+
+    color: #1755b1;
+
+}
+
+
+.tag-research {
+
+    background: #f9dff0;
+
+    color: #b31867;
+
+}
+
+
+/* LEVEL */
+
+.level {
+
+    padding: 6px 10px;
+
+    border-radius: 6px;
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 11px;
+
+    border: 1px solid currentColor;
+
+}
+
+
+.level-national {
+
+    color: #eb7100;
+
+}
+
+
+.level-international {
+
+    color: #008f8d;
+
+}
+
+
+.level-professional {
+
+    color: #6d32ff;
+
+}
+
+
+.level-university {
+
+    color: #17325b;
+
+}
+
+
+/* TITLE */
+
+.achievement-card h3 {
+
+    margin-top: 20px;
+
+    margin-bottom: 12px;
+
+    font-family:
+        "Libre Baskerville",
+        serif;
+
+    font-size: 18px;
+
+    line-height: 1.4;
+
+}
+
+
+.achievement-description {
+
+    color: #395472;
+
+    font-size: 14px;
+
+}
+
+
+.achievement-description strong {
+
+    color: #079f98;
+
+}
+
+
+/* BOTTOM */
+
+.card-bottom {
+
+    margin-top: 25px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    color: #7c91ad;
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 11px;
+
+}
+
+
+.verified {
+
+    color: var(--green);
+
+}
+
+
+.pending {
+
+    color: #8498b6;
+
+}
+
+
+/* =====================================================
+   TIMELINE
+===================================================== */
+
+.timeline {
+
+    position: relative;
+
+    margin-top: 27px;
+
+    padding-left: 46px;
+
+}
+
+
+.timeline::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: 13px;
+
+    top: 0;
+
+    bottom: 0;
+
+    width: 3px;
+
+    background: #20b7a9;
+
+}
+
+
+.timeline-item {
+
+    position: relative;
+
+    margin-bottom: 36px;
+
+}
+
+
+.timeline-dot {
+
+    position: absolute;
+
+    left: -46px;
+
+    top: 19px;
+
+    width: 27px;
+
+    height: 27px;
+
+    border-radius: 50%;
+
+    background: var(--cream);
+
+    border:
+        3px solid
+        #0c263f;
+
+    box-shadow:
+        inset 0 0 0 4px
+        var(--cream);
+
+}
+
+
+.timeline-item:not(:first-child)
+.timeline-dot {
+
+    border-color: #0aa69d;
+
+}
+
+
+.timeline-card {
+
+    background: white;
+
+    border:
+        1px solid
+        #dfd6c8;
+
+    border-radius: 16px;
+
+    padding:
+        22px 26px;
+
+}
+
+
+.timeline-card-top {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+}
+
+
+.timeline-card h3 {
+
+    font-family:
+        "Libre Baskerville",
+        serif;
+
+    font-size: 18px;
+
+    margin-bottom: 12px;
+
+}
+
+
+.timeline-card p {
+
+    color: #2d496a;
+
+    font-size: 14px;
+
+}
+
+
+.timeline-meta {
+
+    white-space: nowrap;
+
+}
+
+
+.timeline-type {
+
+    padding: 5px 9px;
+
+    border-radius: 5px;
+
+    background: #edf4ff;
+
+    color: #244e95;
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 10px;
+
+    margin-right: 10px;
+
+}
+
+
+.timeline-type.achievement {
+
+    background: #d9f8e7;
+
+    color: #08713e;
+
+}
+
+
+.timeline-date {
+
+    color: #8296b2;
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 11px;
+
+}
+
+
+/* =====================================================
+   OVERVIEW / COURSES
+===================================================== */
+
+.generic-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+
+}
+
+
+.generic-card {
+
+    background: white;
+
+    border:
+        1px solid
+        #ded6c9;
+
+    border-radius: 16px;
+
+    padding: 25px;
+
+}
+
+
+.generic-card h3 {
+
+    font-family:
+        "Libre Baskerville",
+        serif;
+
+    font-size: 18px;
+
+    margin: 15px 0;
+
+}
+
+
+.generic-card p {
+
+    color: #7188a8;
+
+    line-height: 1.7;
+
+}
+
+
+/* =====================================================
+   HELP BUTTON
+===================================================== */
+
+.help-button {
+
+    position: fixed;
+
+    right: 15px;
+
+    bottom: 12px;
+
+    width: 43px;
+
+    height: 43px;
+
+    border-radius: 50%;
+
+    border: none;
+
+    background: #222;
+
+    color: white;
+
+    font-size: 21px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 3px 10px
+        rgba(0,0,0,.35);
+
+}
+
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+.toast {
+
+    position: fixed;
+
+    left: 50%;
+
+    bottom: 30px;
+
+    transform:
+        translate(-50%, 20px);
+
+    opacity: 0;
+
+    background: var(--navy);
+
+    color: white;
+
+    padding: 11px 17px;
+
+    border-radius: 8px;
+
+    transition: .3s;
+
+    pointer-events: none;
+
+}
+
+
+.toast.show {
+
+    opacity: 1;
+
+    transform:
+        translate(-50%, 0);
+
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 1100px) {
+
+    .profile-card {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+    }
+
+
+    .statistics {
+
+        width: 100%;
+
+        grid-template-columns:
+            repeat(3, 112px);
+
+    }
+
+
+    .achievement-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+
+    .generic-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 768px) {
+
+    .navbar {
+
+        padding: 12px 18px;
+
+        min-height: 68px;
+
+        height: auto;
+
+    }
+
+
+    .brand-name {
+
+        font-size: 17px;
+
+    }
+
+
+    .brand-divider,
+    .portal-name,
+    .user-email {
+
+        display: none;
+
+    }
+
+
+    .main-container {
+
+        padding:
+            20px 15px
+            50px;
+
+    }
+
+
+    /* PROFILE */
+
+    .profile-card {
+
+        padding: 25px 20px;
+
+        border-radius: 17px;
+
+    }
+
+
+    .profile-left {
+
+        gap: 17px;
+
+    }
+
+
+    .large-avatar {
+
+        width: 76px;
+
+        height: 76px;
+
+        border-radius: 14px;
+
+        font-size: 23px;
+
+    }
+
+
+    .name-container {
+
+        flex-wrap: wrap;
+
+    }
+
+
+    .name-container h1 {
+
+        font-size: 24px;
+
+    }
+
+
+    .degree {
+
+        font-size: 13px;
+
+        line-height: 1.5;
+
+    }
+
+
+    .student-details {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 17px;
+
+    }
+
+
+    /* STATISTICS */
+
+    .statistics {
+
+        width: 100%;
+
+        grid-template-columns:
+            repeat(3, 1fr);
+
+        gap: 8px;
+
+    }
+
+
+    .stat-card {
+
+        height: 100px;
+
+    }
+
+
+    .stat-number {
+
+        font-size: 23px;
+
+    }
+
+
+    /* TRANSCRIPT */
+
+    .transcript-section {
+
+        padding: 18px;
+
+        flex-wrap: wrap;
+
+        gap: 12px;
+
+        align-items: flex-start;
+
+    }
+
+
+    .document-icon {
+
+        width: 48px;
+
+        height: 48px;
+
+    }
+
+
+    .transcript-information {
+
+        width:
+            calc(100% - 60px);
+
+    }
+
+
+    .transcript-heading h2 {
+
+        font-size: 15px;
+
+    }
+
+
+    .transcript-buttons {
+
+        width: 100%;
+
+    }
+
+
+    .copy-button,
+    .view-button {
+
+        flex: 1;
+
+        padding: 0 10px;
+
+    }
+
+
+    /* TABS */
+
+    .tabs {
+
+        height: 63px;
+
+        overflow-x: auto;
+
+        gap: 0;
+
+    }
+
+
+    .tab {
+
+        flex:
+            1 0 auto;
+
+        padding:
+            0 14px
+            15px;
+
+    }
+
+
+    /* GRIDS */
+
+    .achievement-grid,
+    .generic-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .page-heading {
+
+        margin-top: 30px;
+
+    }
+
+
+    .page-heading h2 {
+
+        font-size: 23px;
+
+    }
+
+
+    /* TIMELINE */
+
+    .timeline {
+
+        padding-left: 34px;
+
+    }
+
+
+    .timeline::before {
+
+        left: 8px;
+
+    }
+
+
+    .timeline-dot {
+
+        left: -34px;
+
+        width: 22px;
+
+        height: 22px;
+
+    }
+
+
+    .timeline-card {
+
+        padding: 18px;
+
+    }
+
+
+    .timeline-card-top {
+
+        flex-direction: column;
+
+        gap: 12px;
+
+    }
+
+
+    .timeline-meta {
+
+        white-space: normal;
+
+    }
+
+}
+
+
+/* =====================================================
+   VERY SMALL MOBILE
+===================================================== */
+
+@media (max-width: 430px) {
+
+    .statistics {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .stat-card {
+
+        height: 75px;
+
+        flex-direction: row;
+
+        gap: 7px;
+
+    }
+
+
+    .stat-label {
+
+        margin-top: 0;
+
+    }
+
+
+    .transcript-buttons {
+
+        flex-direction: column;
+
+    }
+
+
+    .profile-left {
+
+        align-items: flex-start;
+
+    }
+
+}
