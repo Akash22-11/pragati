@@ -11,6 +11,7 @@ class UserRole(str, enum.Enum):
     student = "student"
     faculty = "faculty"
     admin = "admin"
+    recruiter = "recruiter"
 
 
 class User(Base):
@@ -28,6 +29,14 @@ class User(Base):
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
     reset_token_hash = Column(String, nullable=True)
     reset_token_expires = Column(DateTime, nullable=True)
+
+    # Phase 1 -- Recruiter fields
+    company_name = Column(String, nullable=True)
+    company_sector = Column(String, nullable=True)
+    company_website = Column(String, nullable=True)
+    company_description = Column(String, nullable=True)
+    is_verified_company = Column(Boolean, default=False)
+    cgpa = Column(String, nullable=True)
 
     submissions = relationship("Submission", back_populates="student")
     notifications = relationship("Notification", back_populates="user")
