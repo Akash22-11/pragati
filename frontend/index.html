@@ -1,20 +1,348 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pragati</title>
-  <script>
-    // Redirect to login if not logged in, else to dashboard
-    const token = localStorage.getItem("access_token");
-    if (token) {
-      window.location.href = "/pages/dashboard.html";
-    } else {
-      window.location.href = "/pages/login.html";
-    }
-  </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Pragati | Student Portal</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Libre+Baskerville:wght@400;700&family=Space+Mono:wght@400;700&display=swap"
+          rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <p>Redirecting...</p>
+
+<!-- ================= NAVBAR ================= -->
+
+<header class="navbar">
+
+    <div class="brand-section">
+
+        <div class="brand-icon">
+            <span>◆</span>
+        </div>
+
+        <div class="brand-name">
+            Pragati
+        </div>
+
+        <div class="brand-divider">
+            /
+        </div>
+
+        <div class="portal-name">
+            Student Portal
+        </div>
+
+    </div>
+
+
+    <div class="user-section">
+
+        <span class="user-email">
+            akashsarkar444@gmail.com
+        </span>
+
+        <div class="user-avatar">
+            
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="main-container">
+
+
+    <!-- ================= PROFILE ================= -->
+
+    <section class="profile-card">
+
+        <div class="profile-left">
+
+            <div class="large-avatar">
+                AS
+            </div>
+
+
+            <div class="profile-information">
+
+                <div class="name-container">
+
+                    <h1>
+                        Akash Sarkar
+                    </h1>
+
+                    <span class="active-badge">
+                        ACTIVE
+                    </span>
+
+                </div>
+
+
+                <p class="degree">
+                    B.Tech Information Technology  ·
+                    Government College of Engineering & Ceramic Technology
+                </p>
+
+
+                <div class="student-details">
+
+                    <div class="detail">
+                        <span class="detail-label">
+                            ROLL NO
+                        </span>
+
+                        <span class="detail-value">
+                            GCECTB-R25-2005
+                        </span>
+                    </div>
+
+
+                    <div class="detail">
+                        <span class="detail-label">
+                            SEMESTER
+                        </span>
+
+                        <span class="detail-value">
+                            3rd Semester
+                        </span>
+                    </div>
+
+
+                    <div class="detail">
+                        <span class="detail-label">
+                            BATCH
+                        </span>
+
+                        <span class="detail-value">
+                            2025–2029
+                        </span>
+                    </div>
+
+
+                    <div class="detail">
+                        <span class="detail-label">
+                            ADVISOR
+                        </span>
+
+                        <span class="detail-value">
+                            Prof. Dr. Sudakshina Dasgupta
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= STATISTICS ================= -->
+
+        <div class="statistics">
+
+            <div class="stat-card">
+
+                <div class="stat-number cyan">
+                    8.45
+                </div>
+
+                <div class="stat-total">
+                    / 10.0
+                </div>
+
+                <div class="stat-label">
+                    CGPA
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-number gold">
+                    #3
+                </div>
+
+                <div class="stat-total">
+                    / 120
+                </div>
+
+                <div class="stat-label">
+                    Rank
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-number purple">
+                    114
+                </div>
+
+                <div class="stat-total">
+                    / 160
+                </div>
+
+                <div class="stat-label">
+                    Credits
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= TRANSCRIPT ================= -->
+
+    <section class="transcript-section">
+
+        <div class="document-icon">
+            📄
+        </div>
+
+
+        <div class="transcript-information">
+
+            <div class="transcript-heading">
+
+                <h2>
+                    Shareable Digital Transcript
+                </h2>
+
+                <span class="verified-badge">
+                    VERIFIED
+                </span>
+
+            </div>
+
+
+            <p class="transcript-link">
+                https://transcript.webpragati.edu.in/verify/WP-GCECTBR25-2005
+            </p>
+
+        </div>
+
+
+        <div class="transcript-buttons">
+
+            <button
+                class="copy-button"
+                id="copyButton">
+
+                <span>▣</span>
+                Copy Link
+
+            </button>
+
+
+            <button
+                class="view-button"
+                id="viewTranscript">
+
+                <span>↗</span>
+                View Transcript
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= TABS ================= -->
+
+    <nav class="tabs">
+
+        <button
+            class="tab"
+            data-page="overview">
+
+            Overview
+
+        </button>
+
+
+        <button
+            class="tab"
+            data-page="courses">
+
+            Courses
+
+        </button>
+
+
+        <button
+            class="tab active"
+            data-page="achievements">
+
+            Achievements
+
+        </button>
+
+
+        <button
+            class="tab"
+            data-page="timeline">
+
+            Timeline
+
+        </button>
+
+    </nav>
+
+
+
+    <!-- ================= PAGE CONTENT ================= -->
+
+    <section id="pageContent">
+
+    </section>
+
+
+</main>
+
+
+<!-- ================= HELP BUTTON ================= -->
+
+<button
+    class="help-button"
+    id="helpButton">
+
+    ?
+
+</button>
+
+
+<!-- ================= TOAST ================= -->
+
+<div
+    class="toast"
+    id="toast">
+
+    Link copied successfully!
+
+</div>
+
+
+<!-- JavaScript -->
+<script src="script.js"></script>
+
 </body>
 </html>
