@@ -3,3 +3,5 @@ from app.models.submission import Submission, SubmissionStatus, SubmissionCatego
 from app.models.verification import Verification, VerificationAction
 from app.models.profile import Profile
 from app.models.notification import Notification
+from app.models.posting import Posting, PostingType, PostingStatus
+from app.models.application import Application, ApplicationStatus
