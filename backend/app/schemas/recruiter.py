@@ -1,19 +1,15 @@
 """
-Phase 1 — Recruiter Schemas
-Pydantic v2 style (model_config = ConfigDict(from_attributes=True))
+Phase 1 -- Recruiter Schemas
+Pydantic v2 style. Matches the ACTUAL users table schema
+(no `year` or `roll_number` columns exist).
 """
 
 import uuid
 from typing import Optional
-from pydantic import BaseModel, ConfigDict, HttpUrl
+from pydantic import BaseModel, ConfigDict
 
-
-# ─────────────────────────────────────────────────────────────
-# RECRUITER PROFILE
-# ─────────────────────────────────────────────────────────────
 
 class RecruiterProfileUpdate(BaseModel):
-    """Fields a recruiter can update on their profile."""
     company_name: Optional[str] = None
     company_sector: Optional[str] = None
     company_website: Optional[str] = None
@@ -35,10 +31,6 @@ class RecruiterProfileResponse(BaseModel):
     is_active: bool
 
 
-# ─────────────────────────────────────────────────────────────
-# SUBMISSION SUMMARY (used inside StudentDetailResponse)
-# ─────────────────────────────────────────────────────────────
-
 class SubmissionSummary(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
@@ -50,48 +42,32 @@ class SubmissionSummary(BaseModel):
     created_at: Optional[str] = None
 
 
-# ─────────────────────────────────────────────────────────────
-# STUDENT LIST ITEM (lightweight — for browse feed)
-# ─────────────────────────────────────────────────────────────
-
 class StudentListItem(BaseModel):
-    """Lightweight student card shown in browse feed."""
     model_config = ConfigDict(from_attributes=True)
 
     id: uuid.UUID
     full_name: str
     email: str
     department: Optional[str] = None
-    year: Optional[int] = None
     cgpa: Optional[float] = None
     institution: Optional[str] = None
     verified_achievements: int = 0
     skills: list[str] = []
 
 
-# ─────────────────────────────────────────────────────────────
-# STUDENT DETAIL RESPONSE (full profile for recruiter)
-# ─────────────────────────────────────────────────────────────
-
 class StudentDetailResponse(BaseModel):
-    """Full student profile shown to recruiter."""
     model_config = ConfigDict(from_attributes=True)
 
     id: uuid.UUID
     full_name: str
     email: str
     department: Optional[str] = None
-    year: Optional[int] = None
     cgpa: Optional[float] = None
     institution: Optional[str] = None
     skills: list[str] = []
     verified_submissions: list[SubmissionSummary] = []
     is_shortlisted: bool = False
 
-
-# ─────────────────────────────────────────────────────────────
-# SHORTLIST
-# ─────────────────────────────────────────────────────────────
 
 class ShortlistCreate(BaseModel):
     student_id: uuid.UUID

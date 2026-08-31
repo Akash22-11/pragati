@@ -5,13 +5,23 @@ export async function login(email, password) {
     method: "POST",
     body: JSON.stringify({ email, password }),
   });
+
   if (res && res.ok) {
     const data = await res.json();
     localStorage.setItem("access_token", data.access_token);
     window.location.href = "/pages/dashboard.html";
-  } else {
-    alert("Invalid credentials. Please try again.");
+    return;
   }
+
+  // Throw instead of alert() so calling pages can show their own inline error.
+  let message = "Invalid email or password. Please try again.";
+  try {
+    const errBody = await res.json();
+    if (errBody && errBody.detail) message = errBody.detail;
+  } catch (_) {
+    // response wasn't JSON — keep default message
+  }
+  throw new Error(message);
 }
 
 export function logout() {

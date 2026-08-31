@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard — Pragati</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500,600&family=Inter:wght@400;500;600&display=swap');
+
+  :root {
+    --navy-950: #0B1220;
+    --navy-900: #0F1729;
+    --navy-800: #16213A;
+    --line: #263354;
+    --ink: #E7ECF7;
+    --ink-muted: #8C97B8;
+    --verify: #2ECC71;
+    --verify-dim: #1B8F4E;
+    --paper: #F6F5F1;
+    --paper-card: #FFFFFF;
+    --paper-ink: #14181F;
+    --paper-muted: #6B7280;
+    --paper-line: #E4E1D8;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--paper);
+    color: var(--paper-ink);
+    min-height: 100vh;
+  }
+
+  /* ---------- Top bar ---------- */
+  header {
+    background: var(--navy-900);
+    color: var(--ink);
+    padding: 18px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .wordmark {
+    font-family: 'Newsreader', Georgia, serif;
+    font-size: 19px;
+    font-weight: 600;
+  }
+  .wordmark span { color: var(--verify); }
+
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+
+  .role-badge {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--verify);
+    background: rgba(46,204,113,0.12);
+    border: 1px solid rgba(46,204,113,0.3);
+    padding: 5px 11px;
+    border-radius: 999px;
+  }
+
+  .user-name {
+    font-size: 14px;
+    color: var(--ink-muted);
+  }
+
+  button.logout {
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink);
+    background: transparent;
+    border: 1px solid var(--line);
+    border-radius: 7px;
+    padding: 7px 14px;
+    cursor: pointer;
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+  button.logout:hover { border-color: var(--verify-dim); background: rgba(46,204,113,0.06); }
+  button.logout:focus-visible { outline: 2px solid var(--verify); outline-offset: 2px; }
+
+  /* ---------- Content ---------- */
+  main {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 48px 40px 80px;
+  }
+
+  .greeting-eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--verify-dim);
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  h1.greeting {
+    font-family: 'Newsreader', Georgia, serif;
+    font-size: 32px;
+    font-weight: 500;
+    margin: 0 0 8px 0;
+  }
+
+  .greeting-sub {
+    font-size: 15px;
+    color: var(--paper-muted);
+    margin: 0 0 40px 0;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 18px;
+  }
+
+  .card {
+    background: var(--paper-card);
+    border: 1px solid var(--paper-line);
+    border-radius: 12px;
+    padding: 24px;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: border-color 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
+  }
+  .card:hover {
+    border-color: var(--verify-dim);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(15,23,41,0.06);
+  }
+  .card:focus-visible {
+    outline: 2px solid var(--verify);
+    outline-offset: 2px;
+  }
+
+  .card .icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    background: rgba(46,204,113,0.10);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    font-size: 17px;
+  }
+
+  .card h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 6px 0;
+  }
+
+  .card p {
+    font-size: 13.5px;
+    color: var(--paper-muted);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .loading, .error-state {
+    font-size: 14px;
+    color: var(--paper-muted);
+    padding: 60px 0;
+    text-align: center;
+  }
+
+  .error-state a {
+    color: var(--verify-dim);
+    font-weight: 600;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wordmark">PRAGATI<span>.</span></div>
+  <div class="header-right">
+    <span class="role-badge" id="roleBadge">—</span>
+    <span class="user-name" id="userName">Loading…</span>
+    <button class="logout" id="logoutBtn">Sign out</button>
+  </div>
+</header>
+
+<main>
+  <div id="content" class="loading">Loading your dashboard…</div>
+</main>
+
+<script type="module">
+  import { isLoggedIn, getToken, logout } from "../js/auth.js";
+  import { apiFetch } from "../js/api.js";
+
+  // Guard: bounce to login if no token present
+  if (!isLoggedIn()) {
+    window.location.href = "./login.html";
+  }
+
+  document.getElementById("logoutBtn").addEventListener("click", logout);
+
+  const ROLE_LABELS = {
+    student: "Student",
+    faculty: "Faculty",
+    admin: "Admin",
+    recruiter: "Recruiter",
+  };
+
+  const ROLE_CARDS = {
+    student: [
+      { icon: "📄", title: "My submissions", desc: "Track certifications, projects, and internships you've submitted for verification.", href: "./submissions.html" },
+      { icon: "🪪", title: "My profile", desc: "View your verified achievement timeline and QR profile link.", href: "./profile.html" },
+    ],
+    faculty: [
+      { icon: "✅", title: "Verification queue", desc: "Review and approve pending student submissions.", href: "./queue.html" },
+    ],
+    admin: [
+      { icon: "✅", title: "Verification queue", desc: "Review and approve pending student submissions.", href: "./queue.html" },
+      { icon: "🏢", title: "Recruiter approvals", desc: "Verify recruiter companies requesting access to student profiles.", href: "./admin-recruiters.html" },
+      { icon: "📊", title: "Analytics", desc: "Institution-wide stats for NAAC / NIRF reporting.", href: "./analytics.html" },
+    ],
+    recruiter: [
+      { icon: "🔍", title: "Browse students", desc: "Search verified student profiles by skill, department, and CGPA.", href: "./browse-students.html" },
+      { icon: "⭐", title: "My shortlist", desc: "Students you've saved for follow-up.", href: "./shortlist.html" },
+      { icon: "🏢", title: "Company profile", desc: "Update your company details and verification status.", href: "./company-profile.html" },
+    ],
+  };
+
+  async function loadDashboard() {
+    const content = document.getElementById("content");
+    try {
+      const res = await apiFetch("/auth/me");
+      if (!res || !res.ok) throw new Error("Could not load your account.");
+
+      const user = await res.json();
+      const role = user.role;
+
+      document.getElementById("userName").textContent = user.full_name || user.email || "";
+      document.getElementById("roleBadge").textContent = ROLE_LABELS[role] || role;
+
+      const cards = ROLE_CARDS[role] || [];
+
+      content.classList.remove("loading");
+      content.innerHTML = `
+        <div class="greeting-eyebrow">Dashboard</div>
+        <h1 class="greeting">Welcome back${user.full_name ? ", " + user.full_name.split(" ")[0] : ""}.</h1>
+        <p class="greeting-sub">${cards.length ? "Here's what you can do next." : "Your account is set up. More tools are on the way."}</p>
+        <div class="grid">
+          ${cards.map(c => `
+            <a class="card" href="${c.href}">
+              <div class="icon">${c.icon}</div>
+              <h3>${c.title}</h3>
+              <p>${c.desc}</p>
+            </a>
+          `).join("")}
+        </div>
+      `;
+    } catch (err) {
+      content.classList.remove("loading");
+      content.classList.add("error-state");
+      content.innerHTML = `Something went wrong loading your dashboard. <a href="./login.html">Sign in again</a>`;
+    }
+  }
+
+  loadDashboard();
+</script>
+
+</body>
+</html>
