@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verification queue — Pragati</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500,600&family=Inter:wght@400;500;600&display=swap');
+
+  :root {
+    --navy-950: #0B1220;
+    --navy-900: #0F1729;
+    --line: #263354;
+    --ink: #E7ECF7;
+    --ink-muted: #8C97B8;
+    --verify: #2ECC71;
+    --verify-dim: #1B8F4E;
+    --warn: #E0A93B;
+    --danger: #D9534F;
+    --paper: #F6F5F1;
+    --paper-card: #FFFFFF;
+    --paper-ink: #14181F;
+    --paper-muted: #6B7280;
+    --paper-line: #E4E1D8;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--paper);
+    color: var(--paper-ink);
+    min-height: 100vh;
+  }
+
+  header {
+    background: var(--navy-900);
+    color: var(--ink);
+    padding: 16px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--line);
+  }
+  .header-left { display: flex; align-items: center; gap: 22px; }
+  .wordmark { font-family: 'Newsreader', Georgia, serif; font-size: 18px; font-weight: 600; }
+  .wordmark span { color: var(--verify); }
+  .back-link { font-size: 13px; color: var(--ink-muted); text-decoration: none; }
+  .back-link:hover { color: var(--ink); }
+
+  button.logout {
+    font-family: inherit; font-size: 13px; font-weight: 500; color: var(--ink);
+    background: transparent; border: 1px solid var(--line); border-radius: 7px;
+    padding: 7px 14px; cursor: pointer;
+  }
+  button.logout:hover { border-color: var(--verify-dim); background: rgba(46,204,113,0.06); }
+
+  main { max-width: 1000px; margin: 0 auto; padding: 40px; }
+
+  .page-eyebrow {
+    font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--verify-dim); font-weight: 600; margin-bottom: 8px;
+  }
+  h1 {
+    font-family: 'Newsreader', Georgia, serif; font-size: 28px; font-weight: 500;
+    margin: 0 0 6px 0;
+  }
+  .page-sub { font-size: 14.5px; color: var(--paper-muted); margin: 0 0 28px 0; }
+
+  /* ---------- Status tabs ---------- */
+  .status-tabs {
+    display: flex; gap: 6px; margin-bottom: 24px; flex-wrap: wrap;
+  }
+  .status-tab {
+    font-family: inherit; font-size: 13.5px; font-weight: 600;
+    padding: 8px 16px; border-radius: 999px; cursor: pointer;
+    background: var(--paper-card); border: 1.5px solid var(--paper-line);
+    color: var(--paper-muted);
+  }
+  .status-tab.active {
+    background: var(--navy-900); color: #fff; border-color: var(--navy-900);
+  }
+  .status-tab .count {
+    display: inline-block; margin-left: 6px; font-size: 11px; opacity: 0.75;
+  }
+
+  /* ---------- Submission cards ---------- */
+  .sub-list { display: flex; flex-direction: column; gap: 12px; }
+
+  .sub-card {
+    background: var(--paper-card);
+    border: 1px solid var(--paper-line);
+    border-radius: 12px;
+    padding: 20px 22px;
+  }
+
+  .sub-top {
+    display: flex; justify-content: space-between; align-items: flex-start; gap: 16px;
+    margin-bottom: 10px;
+  }
+  .sub-title { font-size: 16px; font-weight: 600; margin: 0 0 4px 0; }
+  .sub-meta { font-size: 13px; color: var(--paper-muted); }
+
+  .status-pill {
+    font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em;
+    padding: 4px 10px; border-radius: 999px; white-space: nowrap;
+  }
+  .status-pill.pending { background: rgba(224,169,59,0.14); color: #92650F; }
+  .status-pill.approved { background: rgba(46,204,113,0.12); color: var(--verify-dim); }
+  .status-pill.rejected { background: rgba(217,83,79,0.12); color: #A5342F; }
+  .status-pill.returned { background: rgba(140,151,184,0.16); color: #4B5875; }
+
+  .sub-desc {
+    font-size: 13.5px; color: var(--paper-ink); line-height: 1.55;
+    margin: 10px 0 14px 0;
+  }
+
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+  .skill-tag {
+    font-size: 11.5px; font-weight: 500; color: var(--paper-ink);
+    background: #F1EFE9; border: 1px solid var(--paper-line);
+    padding: 4px 9px; border-radius: 6px;
+  }
+
+  .sub-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+  .btn {
+    font-family: inherit; font-size: 13px; font-weight: 600;
+    padding: 8px 15px; border-radius: 7px; cursor: pointer; border: none;
+  }
+  .btn-approve { background: var(--verify-dim); color: #fff; }
+  .btn-approve:hover { background: #157A41; }
+  .btn-reject { background: rgba(217,83,79,0.10); color: var(--danger); border: 1.5px solid rgba(217,83,79,0.3); }
+  .btn-reject:hover { background: rgba(217,83,79,0.16); }
+  .btn-return { background: transparent; color: var(--paper-muted); border: 1.5px solid var(--paper-line); }
+  .btn-return:hover { border-color: #B8B4A8; }
+  .btn:disabled { opacity: 0.6; cursor: default; }
+
+  .note-row { margin-top: 12px; display: none; gap: 8px; }
+  .note-row.show { display: flex; }
+  .note-row input {
+    flex: 1; padding: 8px 11px; font-size: 13px; font-family: inherit;
+    border: 1.5px solid var(--paper-line); border-radius: 7px;
+  }
+  .note-row input:focus { outline: none; border-color: var(--verify-dim); }
+
+  .empty-state, .loading, .error-state {
+    text-align: center; padding: 70px 20px; color: var(--paper-muted); font-size: 14.5px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-left">
+    <div class="wordmark">PRAGATI<span>.</span></div>
+    <a class="back-link" href="./dashboard.html">← Dashboard</a>
+  </div>
+  <button class="logout" id="logoutBtn">Sign out</button>
+</header>
+
+<main>
+  <div class="page-eyebrow">Faculty tools</div>
+  <h1>Verification queue</h1>
+  <p class="page-sub">Review and approve student submissions before they become verified achievements.</p>
+
+  <div class="status-tabs" id="statusTabs">
+    <button class="status-tab active" data-status="pending">Pending</button>
+    <button class="status-tab" data-status="approved">Approved</button>
+    <button class="status-tab" data-status="rejected">Rejected</button>
+    <button class="status-tab" data-status="returned">Sent back</button>
+    <button class="status-tab" data-status="">All</button>
+  </div>
+
+  <div id="results" class="loading">Loading submissions…</div>
+</main>
+
+<script type="module">
+  import { isLoggedIn, logout } from "../js/auth.js";
+  import { apiFetch } from "../js/api.js";
+
+  if (!isLoggedIn()) window.location.href = "./login.html";
+  document.getElementById("logoutBtn").addEventListener("click", logout);
+
+  const results = document.getElementById("results");
+  const tabs = document.querySelectorAll(".status-tab");
+  let currentStatus = "pending";
+
+  tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      tabs.forEach(t => t.classList.remove("active"));
+      tab.classList.add("active");
+      currentStatus = tab.dataset.status;
+      loadSubmissions();
+    });
+  });
+
+  function escapeHtml(str) {
+    const div = document.createElement("div");
+    div.textContent = str ?? "";
+    return div.innerHTML;
+  }
+
+  function formatDate(iso) {
+    try {
+      return new Date(iso).toLocaleDateString(undefined, { day: "numeric", month: "short", year: "numeric" });
+    } catch {
+      return iso;
+    }
+  }
+
+  function renderSubmissions(subs) {
+    if (!subs.length) {
+      results.className = "empty-state";
+      results.innerHTML = "No submissions in this queue.";
+      return;
+    }
+
+    results.className = "sub-list";
+    results.innerHTML = subs.map(s => {
+      const skills = s.skills || [];
+      const showActions = s.status === "pending";
+
+      return `
+        <div class="sub-card" data-id="${s.id}">
+          <div class="sub-top">
+            <div>
+              <p class="sub-title">${escapeHtml(s.title)}</p>
+              <p class="sub-meta">${escapeHtml(s.student_name || "Unknown student")} · ${escapeHtml(s.student_department || "—")} · ${escapeHtml(s.category)} · Submitted ${formatDate(s.created_at)}</p>
+            </div>
+            <span class="status-pill ${s.status}">${s.status}</span>
+          </div>
+
+          ${s.description ? `<p class="sub-desc">${escapeHtml(s.description)}</p>` : ""}
+
+          ${skills.length ? `
+            <div class="skill-tags">
+              ${skills.map(sk => `<span class="skill-tag">${escapeHtml(sk)}</span>`).join("")}
+            </div>
+          ` : ""}
+
+          ${showActions ? `
+            <div class="sub-actions">
+              <button class="btn btn-approve" data-action="approved">Approve</button>
+              <button class="btn btn-reject" data-action="rejected">Reject</button>
+              <button class="btn btn-return" data-action="returned">Send back</button>
+            </div>
+            <div class="note-row" data-note-row>
+              <input type="text" placeholder="Optional note…" data-note-input>
+              <button class="btn btn-approve" data-confirm>Confirm</button>
+            </div>
+          ` : ""}
+        </div>
+      `;
+    }).join("");
+
+    document.querySelectorAll(".sub-card").forEach(card => {
+      const noteRow = card.querySelector("[data-note-row]");
+      const noteInput = card.querySelector("[data-note-input]");
+      let pendingAction = null;
+
+      card.querySelectorAll("[data-action]").forEach(btn => {
+        btn.addEventListener("click", () => {
+          pendingAction = btn.dataset.action;
+          if (noteRow) noteRow.classList.add("show");
+          if (noteInput) noteInput.focus();
+        });
+      });
+
+      const confirmBtn = card.querySelector("[data-confirm]");
+      if (confirmBtn) {
+        confirmBtn.addEventListener("click", () => handleVerify(card, pendingAction, noteInput.value));
+      }
+    });
+  }
+
+  async function handleVerify(card, action, note) {
+    const submissionId = card.dataset.id;
+    const buttons = card.querySelectorAll("button");
+    buttons.forEach(b => b.disabled = true);
+
+    try {
+      const res = await apiFetch(`/submissions/${submissionId}/verify`, {
+        method: "PATCH",
+        body: JSON.stringify({ action, note: note || null }),
+      });
+      if (!res || !res.ok) throw new Error();
+      loadSubmissions();
+    } catch {
+      alert("Could not update this submission. Please try again.");
+      buttons.forEach(b => b.disabled = false);
+    }
+  }
+
+  async function loadSubmissions() {
+    results.className = "loading";
+    results.textContent = "Loading submissions…";
+
+    try {
+      const query = currentStatus ? `?status=${currentStatus}` : "";
+      const res = await apiFetch(`/submissions/${query}`);
+      if (!res || !res.ok) throw new Error();
+
+      const subs = await res.json();
+      renderSubmissions(subs);
+    } catch {
+      results.className = "error-state";
+      results.textContent = "Could not load submissions. Please try again.";
+    }
+  }
+
+  loadSubmissions();
+</script>
+
+</body>
+</html>
