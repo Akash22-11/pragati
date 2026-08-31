@@ -1,0 +1,1487 @@
+/* =====================================================
+   VARIABLES
+===================================================== */
+
+:root {
+
+    --navy: #102443;
+    --navy-dark: #0b1d38;
+
+    --cream: #f7f2e9;
+
+    --white: #ffffff;
+
+    --text: #09244a;
+
+    --muted: #7d94b5;
+
+    --border: #ded6c8;
+
+    --teal: #08a89e;
+    --teal-dark: #09625f;
+
+    --cyan: #53eee0;
+
+    --green: #08a957;
+
+}
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+
+    margin: 0;
+
+    padding: 0;
+
+    box-sizing: border-box;
+
+}
+
+
+body {
+
+    min-height: 100vh;
+
+    background: var(--cream);
+
+    font-family:
+        "DM Sans",
+        sans-serif;
+
+    color: var(--text);
+
+}
+
+
+/* =====================================================
+   AUTH CONTAINER
+===================================================== */
+
+.auth-container {
+
+    min-height: 100vh;
+
+    display: grid;
+
+    grid-template-columns:
+        45% 55%;
+
+}
+
+
+/* =====================================================
+   LEFT BRANDING PANEL
+===================================================== */
+
+.branding-panel {
+
+    position: relative;
+
+    min-height: 100vh;
+
+    padding:
+        48px 55px;
+
+    color: white;
+
+    background:
+
+        radial-gradient(
+            circle at 85% 15%,
+            rgba(25, 83, 115, .55)
+            0 18%,
+            transparent 18.2%
+        ),
+
+        radial-gradient(
+            circle at 70% 85%,
+            rgba(7, 143, 137, .16)
+            0 25%,
+            transparent 25.2%
+        ),
+
+        var(--navy);
+
+    overflow: hidden;
+
+}
+
+
+/* Decorative circles */
+
+.branding-panel::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 450px;
+
+    height: 450px;
+
+    border-radius: 50%;
+
+    border:
+        1px solid
+        rgba(255,255,255,.05);
+
+    right: -220px;
+
+    bottom: -160px;
+
+}
+
+
+.branding-panel::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 270px;
+
+    height: 270px;
+
+    border-radius: 50%;
+
+    border:
+        1px solid
+        rgba(255,255,255,.05);
+
+    right: 80px;
+
+    top: 180px;
+
+}
+
+
+/* =====================================================
+   LOGO
+===================================================== */
+
+.logo-box {
+
+    position: relative;
+
+    z-index: 2;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+}
+
+
+.logo-icon {
+
+    width: 43px;
+
+    height: 43px;
+
+    border-radius: 10px;
+
+    background: #079f98;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 20px;
+
+}
+
+
+.logo-box h1 {
+
+    font-family:
+        "Libre Baskerville",
+        serif;
+
+    font-size: 20px;
+
+}
+
+
+.logo-box p {
+
+    color: #7186a5;
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 10px;
+
+    margin-top: 4px;
+
+}
+
+
+/* =====================================================
+   BRANDING CONTENT
+===================================================== */
+
+.branding-content {
+
+    position: relative;
+
+    z-index: 2;
+
+    margin-top: 145px;
+
+    max-width: 560px;
+
+}
+
+
+.eyebrow {
+
+    color: var(--cyan);
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 11px;
+
+    letter-spacing: 1.2px;
+
+}
+
+
+.branding-content h2 {
+
+    margin-top: 22px;
+
+    font-family:
+        "Libre Baskerville",
+        serif;
+
+    font-size: clamp(
+        40px,
+        4vw,
+        62px
+    );
+
+    line-height: 1.2;
+
+}
+
+
+.branding-content h2 span {
+
+    color: var(--cyan);
+
+}
+
+
+.branding-content p {
+
+    margin-top: 25px;
+
+    max-width: 480px;
+
+    color: #9eb4d3;
+
+    font-size: 16px;
+
+    line-height: 1.8;
+
+}
+
+
+/* =====================================================
+   FEATURES
+===================================================== */
+
+.feature-list {
+
+    position: relative;
+
+    z-index: 2;
+
+    margin-top: 55px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 22px;
+
+}
+
+
+.feature {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+}
+
+
+.feature-icon {
+
+    width: 32px;
+
+    height: 32px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background:
+        rgba(
+            8,
+            168,
+            158,
+            .15
+        );
+
+    border:
+        1px solid
+        rgba(
+            8,
+            168,
+            158,
+            .45
+        );
+
+    color: var(--cyan);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 13px;
+
+}
+
+
+.feature strong {
+
+    display: block;
+
+    font-size: 14px;
+
+}
+
+
+.feature span {
+
+    display: block;
+
+    margin-top: 3px;
+
+    color: #6f86a6;
+
+    font-size: 12px;
+
+}
+
+
+/* =====================================================
+   BRANDING FOOTER
+===================================================== */
+
+.branding-footer {
+
+    position: absolute;
+
+    z-index: 2;
+
+    left: 55px;
+
+    bottom: 35px;
+
+    color: #506988;
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 10px;
+
+}
+
+
+/* =====================================================
+   RIGHT AUTH PANEL
+===================================================== */
+
+.auth-panel {
+
+    min-height: 100vh;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 40px;
+
+    background: var(--cream);
+
+}
+
+
+/* =====================================================
+   AUTH BOX
+===================================================== */
+
+.auth-box {
+
+    width: 100%;
+
+    max-width: 470px;
+
+}
+
+
+/* =====================================================
+   MOBILE LOGO
+===================================================== */
+
+.mobile-logo {
+
+    display: none;
+
+}
+
+
+/* =====================================================
+   FORM CONTAINER
+===================================================== */
+
+.form-container {
+
+    display: none;
+
+}
+
+
+.form-container.active {
+
+    display: block;
+
+}
+
+
+/* =====================================================
+   FORM HEADING
+===================================================== */
+
+.form-heading {
+
+    margin-bottom: 32px;
+
+}
+
+
+.small-label {
+
+    color: var(--teal);
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+}
+
+
+.form-heading h2 {
+
+    margin-top: 10px;
+
+    font-family:
+        "Libre Baskerville",
+        serif;
+
+    font-size: 28px;
+
+    line-height: 1.4;
+
+}
+
+
+.form-heading p {
+
+    margin-top: 8px;
+
+    color: var(--muted);
+
+    font-size: 14px;
+
+    line-height: 1.6;
+
+}
+
+
+/* =====================================================
+   INPUT GROUP
+===================================================== */
+
+.input-group {
+
+    margin-bottom: 21px;
+
+}
+
+
+.input-group label {
+
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #183454;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+}
+
+
+.label-row {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+}
+
+
+.label-row a {
+
+    color: var(--teal-dark);
+
+    text-decoration: none;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+}
+
+
+.label-row a:hover {
+
+    text-decoration: underline;
+
+}
+
+
+/* =====================================================
+   INPUT WRAPPER
+===================================================== */
+
+.input-wrapper {
+
+    height: 50px;
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    background: white;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius: 9px;
+
+    transition: .2s;
+
+}
+
+
+.input-wrapper:focus-within {
+
+    border-color: var(--teal);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(
+            8,
+            168,
+            158,
+            .09
+        );
+
+}
+
+
+.input-icon {
+
+    width: 45px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: #8196b3;
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 12px;
+
+}
+
+
+.input-wrapper input {
+
+    width: 100%;
+
+    height: 100%;
+
+    border: none;
+
+    outline: none;
+
+    padding:
+        0 13px 0 0;
+
+    background: transparent;
+
+    color: var(--text);
+
+    font-family:
+        "DM Sans",
+        sans-serif;
+
+    font-size: 14px;
+
+}
+
+
+.input-wrapper input::placeholder {
+
+    color: #b0bdce;
+
+}
+
+
+/* =====================================================
+   PASSWORD TOGGLE
+===================================================== */
+
+.password-toggle {
+
+    margin-right: 10px;
+
+    border: none;
+
+    background: transparent;
+
+    color: var(--teal-dark);
+
+    cursor: pointer;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+}
+
+
+/* =====================================================
+   ERROR
+===================================================== */
+
+.error {
+
+    display: block;
+
+    min-height: 16px;
+
+    margin-top: 5px;
+
+    color: #d34c4c;
+
+    font-size: 11px;
+
+}
+
+
+/* =====================================================
+   REMEMBER
+===================================================== */
+
+.remember-row {
+
+    margin-top: -3px;
+
+    margin-bottom: 20px;
+
+}
+
+
+.checkbox-container,
+.terms-checkbox {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 9px;
+
+    color: #667e9e;
+
+    font-size: 12px;
+
+    cursor: pointer;
+
+}
+
+
+.checkbox-container input,
+.terms-checkbox input {
+
+    position: absolute;
+
+    opacity: 0;
+
+}
+
+
+.custom-checkbox {
+
+    width: 16px;
+
+    height: 16px;
+
+    flex-shrink: 0;
+
+    border:
+        1px solid
+        #c8d1dc;
+
+    border-radius: 4px;
+
+    background: white;
+
+    position: relative;
+
+}
+
+
+.checkbox-container input:checked
++ .custom-checkbox,
+.terms-checkbox input:checked
++ .custom-checkbox {
+
+    background: var(--teal);
+
+    border-color: var(--teal);
+
+}
+
+
+.checkbox-container input:checked
++ .custom-checkbox::after,
+.terms-checkbox input:checked
++ .custom-checkbox::after {
+
+    content: "✓";
+
+    position: absolute;
+
+    color: white;
+
+    font-size: 11px;
+
+    left: 3px;
+
+    top: -1px;
+
+}
+
+
+/* =====================================================
+   PRIMARY BUTTON
+===================================================== */
+
+.primary-button {
+
+    width: 100%;
+
+    height: 52px;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background:
+        linear-gradient(
+            105deg,
+            #0aa59d,
+            #087d7a
+        );
+
+    color: white;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 13px;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    box-shadow:
+        0 8px 18px
+        rgba(
+            8,
+            150,
+            143,
+            .17
+        );
+
+    transition:
+        transform .2s,
+        box-shadow .2s;
+
+}
+
+
+.primary-button:hover {
+
+    transform:
+        translateY(-1px);
+
+    box-shadow:
+        0 10px 22px
+        rgba(
+            8,
+            150,
+            143,
+            .24
+        );
+
+}
+
+
+.primary-button span {
+
+    font-size: 18px;
+
+}
+
+
+/* =====================================================
+   DIVIDER
+===================================================== */
+
+.divider {
+
+    margin:
+        25px 0;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    color: #a1afc0;
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 9px;
+
+}
+
+
+.divider::before,
+.divider::after {
+
+    content: "";
+
+    flex: 1;
+
+    height: 1px;
+
+    background: #e2dbd0;
+
+}
+
+
+/* =====================================================
+   DEMO BUTTON
+===================================================== */
+
+.demo-button {
+
+    width: 100%;
+
+    padding: 12px 15px;
+
+    border:
+        1px solid
+        #dcd5c9;
+
+    border-radius: 9px;
+
+    background: white;
+
+    color: var(--text);
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+}
+
+
+.demo-button span {
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+}
+
+
+.demo-button small {
+
+    color: #8295b1;
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 8px;
+
+}
+
+
+.demo-button:hover {
+
+    border-color: var(--teal);
+
+}
+
+
+/* =====================================================
+   SWITCH TEXT
+===================================================== */
+
+.switch-text {
+
+    margin-top: 27px;
+
+    text-align: center;
+
+    color: #8094b0;
+
+    font-size: 13px;
+
+}
+
+
+.switch-text button {
+
+    border: none;
+
+    background: none;
+
+    color: var(--teal-dark);
+
+    cursor: pointer;
+
+    font-weight: 700;
+
+    font-size: 13px;
+
+}
+
+
+.switch-text button:hover {
+
+    text-decoration: underline;
+
+}
+
+
+/* =====================================================
+   PASSWORD STRENGTH
+===================================================== */
+
+.password-strength {
+
+    margin-top: 8px;
+
+}
+
+
+.strength-bars {
+
+    display: flex;
+
+    gap: 4px;
+
+}
+
+
+.strength-bars span {
+
+    height: 3px;
+
+    flex: 1;
+
+    border-radius: 4px;
+
+    background: #ddd7ce;
+
+}
+
+
+.password-strength small {
+
+    display: block;
+
+    margin-top: 5px;
+
+    color: #899bb4;
+
+    font-size: 10px;
+
+}
+
+
+/* =====================================================
+   TERMS
+===================================================== */
+
+.terms-checkbox {
+
+    line-height: 1.5;
+
+    margin-top: -2px;
+
+}
+
+
+.terms-checkbox a {
+
+    color: var(--teal-dark);
+
+    text-decoration: none;
+
+    font-weight: 600;
+
+}
+
+
+.terms-checkbox a:hover {
+
+    text-decoration: underline;
+
+}
+
+
+/* =====================================================
+   MODAL
+===================================================== */
+
+.modal-overlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 100;
+
+    background:
+        rgba(
+            8,
+            25,
+            47,
+            .55
+        );
+
+    backdrop-filter: blur(5px);
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+}
+
+
+.modal-overlay.show {
+
+    display: flex;
+
+}
+
+
+.success-modal {
+
+    width: 100%;
+
+    max-width: 380px;
+
+    background: white;
+
+    border-radius: 18px;
+
+    padding: 35px;
+
+    text-align: center;
+
+    box-shadow:
+        0 25px 60px
+        rgba(
+            0,
+            0,
+            0,
+            .2
+        );
+
+}
+
+
+.success-icon {
+
+    width: 60px;
+
+    height: 60px;
+
+    margin:
+        0 auto 18px;
+
+    border-radius: 50%;
+
+    background: #d9f8e7;
+
+    color: var(--green);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 25px;
+
+    font-weight: 700;
+
+}
+
+
+.success-modal h2 {
+
+    font-family:
+        "Libre Baskerville",
+        serif;
+
+    font-size: 21px;
+
+}
+
+
+.success-modal p {
+
+    margin:
+        10px 0 22px;
+
+    color: #7890ae;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+
+}
+
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+.toast {
+
+    position: fixed;
+
+    left: 50%;
+
+    bottom: 25px;
+
+    z-index: 200;
+
+    transform:
+        translate(-50%, 20px);
+
+    opacity: 0;
+
+    padding:
+        11px 17px;
+
+    border-radius: 8px;
+
+    background: var(--navy);
+
+    color: white;
+
+    font-size: 12px;
+
+    transition: .25s;
+
+    pointer-events: none;
+
+}
+
+
+.toast.show {
+
+    opacity: 1;
+
+    transform:
+        translate(-50%, 0);
+
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 1000px) {
+
+    .auth-container {
+
+        grid-template-columns:
+            38% 62%;
+
+    }
+
+
+    .branding-panel {
+
+        padding:
+            40px 35px;
+
+    }
+
+
+    .branding-content {
+
+        margin-top: 120px;
+
+    }
+
+
+    .branding-content h2 {
+
+        font-size: 40px;
+
+    }
+
+
+    .branding-footer {
+
+        left: 35px;
+
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 760px) {
+
+    .auth-container {
+
+        display: block;
+
+    }
+
+
+    .branding-panel {
+
+        display: none;
+
+    }
+
+
+    .auth-panel {
+
+        min-height: 100vh;
+
+        padding:
+            25px 20px;
+
+        align-items: flex-start;
+
+    }
+
+
+    .auth-box {
+
+        max-width: 500px;
+
+        margin:
+            20px auto;
+
+    }
+
+
+    .mobile-logo {
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        gap: 10px;
+
+        margin-bottom: 45px;
+
+    }
+
+
+    .mobile-logo-icon {
+
+        width: 37px;
+
+        height: 37px;
+
+        border-radius: 9px;
+
+        background: var(--teal);
+
+        color: white;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        font-size: 17px;
+
+    }
+
+
+    .mobile-logo span {
+
+        font-family:
+            "Libre Baskerville",
+            serif;
+
+        font-size: 18px;
+
+        font-weight: 700;
+
+    }
+
+
+    .form-heading h2 {
+
+        font-size: 25px;
+
+    }
+
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 430px) {
+
+    .auth-panel {
+
+        padding:
+            20px 16px;
+
+    }
+
+
+    .auth-box {
+
+        margin-top: 10px;
+
+    }
+
+
+    .mobile-logo {
+
+        margin-bottom: 35px;
+
+    }
+
+
+    .form-heading {
+
+        margin-bottom: 27px;
+
+    }
+
+
+    .form-heading h2 {
+
+        font-size: 22px;
+
+    }
+
+
+    .demo-button {
+
+        flex-direction: column;
+
+        gap: 5px;
+
+    }
+
+}
