@@ -10,3 +10,4 @@ from app.routers.bulk_upload import router as bulk_upload_router
 from app.routers.reports import router as reports_router
 from app.routers.recruiter import router as recruiter_router
 from app.routers.skills import router as skills_router
+from app.routers.postings import router as postings_router
