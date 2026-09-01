@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, Boolean, DateTime, Enum
+from sqlalchemy import Column, String, Boolean, DateTime, Enum, Float
 from app.db_types import GUID
 from sqlalchemy.orm import relationship
 from app.database import Base
@@ -36,7 +36,7 @@ class User(Base):
     company_website = Column(String, nullable=True)
     company_description = Column(String, nullable=True)
     is_verified_company = Column(Boolean, default=False)
-    cgpa = Column(String, nullable=True)
+    cgpa = Column(Float, nullable=True)
 
     submissions = relationship("Submission", back_populates="student")
     notifications = relationship("Notification", back_populates="user")
