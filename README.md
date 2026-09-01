@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🎓 Pragati
+# 🎓 Pragati.
 
 ### One Platform for Every Achievement
 
