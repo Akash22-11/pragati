@@ -73,7 +73,7 @@ class Submission(Base):
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
-        student = relationship("User", back_populates="submissions")
+    student = relationship("User", back_populates="submissions")
     verification = relationship("Verification", back_populates="submission", uselist=False)
 
     @property
@@ -88,4 +88,3 @@ class Submission(Base):
     @property
     def student_department(self):
         return self.student.department if self.student else None
-
