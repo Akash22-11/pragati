@@ -73,5 +73,19 @@ class Submission(Base):
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
-    student = relationship("User", back_populates="submissions")
+        student = relationship("User", back_populates="submissions")
     verification = relationship("Verification", back_populates="submission", uselist=False)
+
+    @property
+    def student_name(self):
+        """Used by SubmissionResponse so the queue UI shows a name, not a raw UUID."""
+        return self.student.full_name if self.student else None
+
+    @property
+    def student_email(self):
+        return self.student.email if self.student else None
+
+    @property
+    def student_department(self):
+        return self.student.department if self.student else None
+

@@ -17,3 +17,4 @@ backend/alembic/versions/*.pyc
 # OS
 .DS_Store
 *.log
+node_modules/

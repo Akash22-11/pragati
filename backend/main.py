@@ -14,6 +14,7 @@ from app.routers import (
     reports_router,
     recruiter_router,
     skills_router,
+    postings_router,
 )
 from app.socket import sio
 import socketio
@@ -46,6 +47,7 @@ fastapi_app.include_router(bulk_upload_router)
 fastapi_app.include_router(reports_router)
 fastapi_app.include_router(recruiter_router, prefix="/recruiters", tags=["Recruiters"])
 fastapi_app.include_router(skills_router, prefix="/skills", tags=["Skills"])
+fastapi_app.include_router(postings_router, prefix="/postings", tags=["Internships & Placements"])
 
 
 @fastapi_app.get("/health")

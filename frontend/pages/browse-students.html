@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Browse students — Pragati</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500,600&family=Inter:wght@400;500;600&display=swap');
+
+  :root {
+    --navy-950: #0B1220;
+    --navy-900: #0F1729;
+    --line: #263354;
+    --ink: #E7ECF7;
+    --ink-muted: #8C97B8;
+    --verify: #2ECC71;
+    --verify-dim: #1B8F4E;
+    --paper: #F6F5F1;
+    --paper-card: #FFFFFF;
+    --paper-ink: #14181F;
+    --paper-muted: #6B7280;
+    --paper-line: #E4E1D8;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--paper);
+    color: var(--paper-ink);
+    min-height: 100vh;
+  }
+
+  header {
+    background: var(--navy-900);
+    color: var(--ink);
+    padding: 16px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--line);
+  }
+  .header-left { display: flex; align-items: center; gap: 22px; }
+  .wordmark { font-family: 'Newsreader', Georgia, serif; font-size: 18px; font-weight: 600; }
+  .wordmark span { color: var(--verify); }
+  .back-link {
+    font-size: 13px; color: var(--ink-muted); text-decoration: none;
+    display: flex; align-items: center; gap: 5px;
+  }
+  .back-link:hover { color: var(--ink); }
+
+  button.logout {
+    font-family: inherit; font-size: 13px; font-weight: 500; color: var(--ink);
+    background: transparent; border: 1px solid var(--line); border-radius: 7px;
+    padding: 7px 14px; cursor: pointer;
+  }
+  button.logout:hover { border-color: var(--verify-dim); background: rgba(46,204,113,0.06); }
+
+  main { max-width: 1100px; margin: 0 auto; padding: 40px; }
+
+  .page-eyebrow {
+    font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--verify-dim); font-weight: 600; margin-bottom: 8px;
+  }
+  h1 {
+    font-family: 'Newsreader', Georgia, serif; font-size: 28px; font-weight: 500;
+    margin: 0 0 6px 0;
+  }
+  .page-sub { font-size: 14.5px; color: var(--paper-muted); margin: 0 0 32px 0; }
+
+  /* ---------- Filter bar ---------- */
+  .filters {
+    background: var(--paper-card);
+    border: 1px solid var(--paper-line);
+    border-radius: 12px;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 14px;
+    margin-bottom: 28px;
+    align-items: end;
+  }
+  .filter-field label {
+    display: block; font-size: 12px; font-weight: 600; margin-bottom: 6px;
+    color: var(--paper-muted); text-transform: uppercase; letter-spacing: 0.04em;
+  }
+  .filter-field input {
+    width: 100%; padding: 9px 11px; font-size: 14px; font-family: inherit;
+    border: 1.5px solid #D8D5CC; border-radius: 7px; background: #FFF;
+  }
+  .filter-field input:focus {
+    outline: none; border-color: var(--verify-dim);
+    box-shadow: 0 0 0 3px rgba(46,204,113,0.15);
+  }
+  .filter-actions { display: flex; gap: 10px; }
+  button.apply {
+    font-family: inherit; font-size: 14px; font-weight: 600; color: #fff;
+    background: var(--navy-900); border: none; border-radius: 7px;
+    padding: 10px 18px; cursor: pointer; white-space: nowrap;
+  }
+  button.apply:hover { background: #060B15; }
+  button.clear {
+    font-family: inherit; font-size: 14px; font-weight: 500; color: var(--paper-muted);
+    background: transparent; border: 1.5px solid var(--paper-line); border-radius: 7px;
+    padding: 10px 16px; cursor: pointer; white-space: nowrap;
+  }
+  button.clear:hover { border-color: #B8B4A8; }
+
+  /* ---------- Results ---------- */
+  .results-meta {
+    font-size: 13.5px; color: var(--paper-muted); margin-bottom: 16px;
+  }
+
+  .student-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+  }
+
+  .student-card {
+    background: var(--paper-card);
+    border: 1px solid var(--paper-line);
+    border-radius: 12px;
+    padding: 20px;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  .student-card:hover { border-color: var(--verify-dim); box-shadow: 0 6px 20px rgba(15,23,41,0.06); }
+
+  .student-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
+  .student-name { font-size: 16px; font-weight: 600; margin: 0 0 3px 0; }
+  .student-meta { font-size: 13px; color: var(--paper-muted); }
+
+  .verified-badge {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-size: 11.5px; font-weight: 600; color: var(--verify-dim);
+    background: rgba(46,204,113,0.10); border: 1px solid rgba(46,204,113,0.25);
+    padding: 4px 9px; border-radius: 999px; white-space: nowrap;
+  }
+
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0 16px 0; min-height: 26px; }
+  .skill-tag {
+    font-size: 11.5px; font-weight: 500; color: var(--paper-ink);
+    background: #F1EFE9; border: 1px solid var(--paper-line);
+    padding: 4px 9px; border-radius: 6px;
+  }
+  .skill-tag.more { color: var(--paper-muted); background: transparent; border-style: dashed; }
+
+  .card-actions { display: flex; gap: 8px; }
+  .btn-shortlist, .btn-view {
+    flex: 1; font-family: inherit; font-size: 13px; font-weight: 600;
+    padding: 9px 12px; border-radius: 7px; cursor: pointer; text-align: center;
+    text-decoration: none; display: block;
+  }
+  .btn-shortlist {
+    background: var(--navy-900); color: #fff; border: none;
+  }
+  .btn-shortlist:hover { background: #060B15; }
+  .btn-shortlist[data-saved="true"] {
+    background: rgba(46,204,113,0.12); color: var(--verify-dim);
+  }
+  .btn-shortlist:disabled { opacity: 0.6; cursor: default; }
+  .btn-view {
+    background: transparent; color: var(--paper-ink); border: 1.5px solid var(--paper-line);
+  }
+  .btn-view:hover { border-color: #B8B4A8; }
+
+  .empty-state, .loading, .error-state {
+    text-align: center; padding: 70px 20px; color: var(--paper-muted); font-size: 14.5px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-left">
+    <div class="wordmark">PRAGATI<span>.</span></div>
+    <a class="back-link" href="./dashboard.html">← Dashboard</a>
+  </div>
+  <button class="logout" id="logoutBtn">Sign out</button>
+</header>
+
+<main>
+  <div class="page-eyebrow">Recruiter tools</div>
+  <h1>Browse students</h1>
+  <p class="page-sub">Search verified student profiles by department, year, skill, or CGPA.</p>
+
+  <form class="filters" id="filterForm">
+    <div class="filter-field">
+      <label for="department">Department</label>
+      <input type="text" id="department" placeholder="e.g. CSE">
+    </div>
+    <div class="filter-field">
+      <label for="year">Year</label>
+      <input type="number" id="year" min="1" max="4" placeholder="e.g. 3">
+    </div>
+    <div class="filter-field">
+      <label for="skill">Skill</label>
+      <input type="text" id="skill" placeholder="e.g. Python">
+    </div>
+    <div class="filter-field">
+      <label for="minCgpa">Min CGPA</label>
+      <input type="number" id="minCgpa" min="0" max="10" step="0.1" placeholder="e.g. 7.5">
+    </div>
+    <div class="filter-field">
+      <label for="search">Name</label>
+      <input type="text" id="search" placeholder="Search by name">
+    </div>
+    <div class="filter-actions">
+      <button type="submit" class="apply">Search</button>
+      <button type="button" class="clear" id="clearBtn">Clear</button>
+    </div>
+  </form>
+
+  <div class="results-meta" id="resultsMeta"></div>
+  <div id="results" class="loading">Loading students…</div>
+</main>
+
+<script type="module">
+  import { isLoggedIn, logout } from "../js/auth.js";
+  import { apiFetch } from "../js/api.js";
+
+  if (!isLoggedIn()) window.location.href = "./login.html";
+  document.getElementById("logoutBtn").addEventListener("click", logout);
+
+  const form = document.getElementById("filterForm");
+  const results = document.getElementById("results");
+  const resultsMeta = document.getElementById("resultsMeta");
+
+  function buildQuery() {
+    const params = new URLSearchParams();
+    const department = document.getElementById("department").value.trim();
+    const year = document.getElementById("year").value.trim();
+    const skill = document.getElementById("skill").value.trim();
+    const minCgpa = document.getElementById("minCgpa").value.trim();
+    const search = document.getElementById("search").value.trim();
+
+    if (department) params.set("department", department);
+    if (year) params.set("year", year);
+    if (skill) params.set("skill", skill);
+    if (minCgpa) params.set("min_cgpa", minCgpa);
+    if (search) params.set("search", search);
+
+    return params.toString();
+  }
+
+  function renderStudents(students) {
+    if (!students.length) {
+      results.className = "empty-state";
+      results.innerHTML = "No students match these filters. Try broadening your search.";
+      resultsMeta.textContent = "";
+      return;
+    }
+
+    resultsMeta.textContent = `${students.length} student${students.length === 1 ? "" : "s"} found`;
+    results.className = "student-grid";
+    results.innerHTML = students.map(s => {
+      const skills = s.skills || [];
+      const shownSkills = skills.slice(0, 4);
+      const extraCount = skills.length - shownSkills.length;
+
+      return `
+        <div class="student-card">
+          <div class="student-top">
+            <div>
+              <p class="student-name">${escapeHtml(s.full_name)}</p>
+              <p class="student-meta">${escapeHtml(s.department || "—")} · Year ${s.year || "—"}${s.cgpa ? " · CGPA " + s.cgpa : ""}</p>
+            </div>
+            <span class="verified-badge">✓ ${s.verified_achievements} verified</span>
+          </div>
+          <div class="skill-tags">
+            ${shownSkills.map(sk => `<span class="skill-tag">${escapeHtml(sk)}</span>`).join("")}
+            ${extraCount > 0 ? `<span class="skill-tag more">+${extraCount} more</span>` : ""}
+            ${skills.length === 0 ? `<span class="skill-tag more">No tagged skills yet</span>` : ""}
+          </div>
+          <div class="card-actions">
+            <button class="btn-shortlist" data-id="${s.id}" data-saved="false">☆ Shortlist</button>
+            <a class="btn-view" href="./student-profile-view.html?id=${s.id}">View profile</a>
+          </div>
+        </div>
+      `;
+    }).join("");
+
+    document.querySelectorAll(".btn-shortlist").forEach(btn => {
+      btn.addEventListener("click", () => handleShortlist(btn));
+    });
+  }
+
+  async function handleShortlist(btn) {
+    const studentId = btn.dataset.id;
+    const alreadySaved = btn.dataset.saved === "true";
+    btn.disabled = true;
+
+    try {
+      if (!alreadySaved) {
+        const res = await apiFetch("/recruiters/shortlist", {
+          method: "POST",
+          body: JSON.stringify({ student_id: studentId }),
+        });
+        if (res && res.ok) {
+          btn.dataset.saved = "true";
+          btn.textContent = "★ Shortlisted";
+        } else if (res && res.status === 409) {
+          btn.dataset.saved = "true";
+          btn.textContent = "★ Shortlisted";
+        } else {
+          throw new Error();
+        }
+      } else {
+        const res = await apiFetch(`/recruiters/shortlist/${studentId}`, { method: "DELETE" });
+        if (res && res.ok) {
+          btn.dataset.saved = "false";
+          btn.textContent = "☆ Shortlist";
+        } else {
+          throw new Error();
+        }
+      }
+    } catch {
+      alert("Could not update shortlist. Please try again.");
+    } finally {
+      btn.disabled = false;
+    }
+  }
+
+  function escapeHtml(str) {
+    const div = document.createElement("div");
+    div.textContent = str ?? "";
+    return div.innerHTML;
+  }
+
+  async function loadStudents() {
+    results.className = "loading";
+    results.textContent = "Loading students…";
+
+    try {
+      const query = buildQuery();
+      const res = await apiFetch(`/recruiters/students${query ? "?" + query : ""}`);
+      if (!res || !res.ok) throw new Error();
+
+      const students = await res.json();
+      renderStudents(students);
+    } catch {
+      results.className = "error-state";
+      results.textContent = "Could not load students. Please try again.";
+      resultsMeta.textContent = "";
+    }
+  }
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    loadStudents();
+  });
+
+  document.getElementById("clearBtn").addEventListener("click", () => {
+    form.reset();
+    loadStudents();
+  });
+
+  loadStudents();
+</script>
+
+</body>
+</html>

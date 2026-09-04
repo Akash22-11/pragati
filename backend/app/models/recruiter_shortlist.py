@@ -8,9 +8,8 @@ import uuid
 
 class RecruiterShortlist(Base):
     """
-    Tracks which students a recruiter has saved/shortlisted
-    for future reference — before any formal application exists.
-    This is Phase 1 only. Phase 2 adds the full Application model.
+    Tracks which students a recruiter has saved/shortlisted.
+    One-directional relationships only -- User model is not modified.
     """
     __tablename__ = "recruiter_shortlists"
 
