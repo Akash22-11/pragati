@@ -24,7 +24,6 @@ class SubmissionCategory(str, enum.Enum):
     other = "other"
 
 
-# Phase 1 -- Default skill suggestions per category, used by frontend auto-suggest
 CATEGORY_SKILL_SUGGESTIONS = {
     "certification": [
         "Python", "Java", "SQL", "AWS", "Azure", "GCP", "Machine Learning",
@@ -70,11 +69,9 @@ class Submission(Base):
     category = Column(Enum(SubmissionCategory), nullable=False)
     status = Column(Enum(SubmissionStatus), default=SubmissionStatus.pending)
     file_url = Column(String, nullable=True)
+    skills = Column(JSON, nullable=True, default=list)
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
-
-    # Phase 1 -- skill tagging, JSON array of strings e.g. ["Python", "FastAPI"]
-    skills = Column(JSON, nullable=True, default=list)
 
     student = relationship("User", back_populates="submissions")
     verification = relationship("Verification", back_populates="submission", uselist=False)
