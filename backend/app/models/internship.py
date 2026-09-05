@@ -7,7 +7,7 @@ from sqlalchemy.orm import relationship
 import enum
 
 from app.database import Base
-from app.db_types import GUID  # tomar existing cross-db UUID type
+from app.db_types import GUID 
 
 
 class ApprovalStatus(str, enum.Enum):
@@ -36,7 +36,6 @@ class Company(Base):
         SQLEnum(ApprovalStatus), default=ApprovalStatus.pending, nullable=False
     )
 
-    # Company account link (jodi company nijer login-e post kore)
     created_by_user_id = Column(GUID(), ForeignKey("users.id"), nullable=True)
 
     created_at = Column(DateTime, default=datetime.utcnow)
