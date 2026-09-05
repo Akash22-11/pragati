@@ -55,7 +55,7 @@ class InternshipPosting(Base):
     location = Column(String(255), nullable=True)
     is_remote = Column(Boolean, default=False)
 
-    stipend = Column(String(100), nullable=True)  # ba Numeric field, tomar preference onujayi
+    stipend = Column(String(100), nullable=True)  
     duration = Column(String(100), nullable=True)  # e.g. "3 months"
 
     deadline = Column(DateTime, nullable=False)
