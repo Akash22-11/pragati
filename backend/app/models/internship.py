@@ -56,7 +56,7 @@ class InternshipPosting(Base):
     is_remote = Column(Boolean, default=False)
 
     stipend = Column(String(100), nullable=True)  
-    duration = Column(String(100), nullable=True)  # e.g. "3 months"
+    duration = Column(String(100), nullable=True) 
 
     deadline = Column(DateTime, nullable=False)
     is_active = Column(Boolean, default=True)  # deadline chole gele False kore dite paro
