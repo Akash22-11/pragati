@@ -20,6 +20,7 @@ class Application(Base):
     
     __tablename__ = "applications"
 
+    
     id = Column(GUID(), primary_key=True, default=uuid.uuid4)
 
     posting_id = Column(GUID(), ForeignKey("postings.id", ondelete="CASCADE"), nullable=False, index=True)
