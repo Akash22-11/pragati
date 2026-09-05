@@ -17,10 +17,7 @@ class ApplicationStatus(str, enum.Enum):
 
 
 class Application(Base):
-    """
-    Phase 2 -- Tracks a student's application to a Posting, and its
-    review status as the recruiter moves it through the pipeline.
-    """
+    
     __tablename__ = "applications"
 
     id = Column(GUID(), primary_key=True, default=uuid.uuid4)
