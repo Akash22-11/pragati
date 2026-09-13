@@ -18,7 +18,7 @@ from app.routers import (
 )
 from app.socket import sio
 import socketio
-import app.models  # noqa: F401
+import app.models  
 
 
 fastapi_app = FastAPI(
