@@ -54,5 +54,4 @@ fastapi_app.include_router(postings_router, prefix="/postings", tags=["Internshi
 def health_check():
     return {"status": "ok", "project": "Pragati"}
 
-
 app = socketio.ASGIApp(sio, other_asgi_app=fastapi_app)  # noqa: F811
