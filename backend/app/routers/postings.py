@@ -243,9 +243,6 @@ def update_application_status(
     if not posting or posting.recruiter_id != current_user.id:
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Not your posting")
 
-    if payload.status not in [s.value for s in ApplicationStatus]:
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Invalid status")
-
     application.status = payload.status
     db.commit()
     db.refresh(application)

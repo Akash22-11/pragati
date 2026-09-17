@@ -6,6 +6,8 @@ import uuid
 from typing import Optional
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict
+from app.models.posting import PostingType, PostingStatus
+from app.models.application import ApplicationStatus
 
 
 # -----------------------------------------------------------------
@@ -15,7 +17,7 @@ from pydantic import BaseModel, ConfigDict
 class PostingCreate(BaseModel):
     title: str
     description: Optional[str] = None
-    type: str = "internship"  # "internship" | "job"
+    type: PostingType = PostingType.internship
     location: Optional[str] = None
     stipend: Optional[str] = None
     positions: Optional[int] = 1
@@ -26,13 +28,13 @@ class PostingCreate(BaseModel):
 class PostingUpdate(BaseModel):
     title: Optional[str] = None
     description: Optional[str] = None
-    type: Optional[str] = None
+    type: Optional[PostingType] = None
     location: Optional[str] = None
     stipend: Optional[str] = None
     positions: Optional[int] = None
     skills_required: Optional[list[str]] = None
     deadline: Optional[datetime] = None
-    status: Optional[str] = None  # "open" | "closed"
+    status: Optional[PostingStatus] = None
 
 
 class PostingResponse(BaseModel):
@@ -43,7 +45,7 @@ class PostingResponse(BaseModel):
     company_name: Optional[str] = None
     title: str
     description: Optional[str] = None
-    type: str
+    type: PostingType
     location: Optional[str] = None
     stipend: Optional[str] = None
     positions: Optional[int] = None
@@ -65,7 +67,7 @@ class ApplicationCreate(BaseModel):
 
 
 class ApplicationStatusUpdate(BaseModel):
-    status: str  # "shortlisted" | "selected" | "rejected" | "applied"
+      status: ApplicationStatus
 
 
 class ApplicationResponse(BaseModel):
