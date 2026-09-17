@@ -13,5 +13,6 @@ class NotificationResponse(BaseModel):
     class Config:
         from_attributes = True
 
+
 class MarkReadRequest(BaseModel):
     notification_id: UUID

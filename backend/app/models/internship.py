@@ -7,7 +7,7 @@ from sqlalchemy.orm import relationship
 import enum
 
 from app.database import Base
-from app.db_types import GUID  # tomar existing cross-db UUID type
+from app.db_types import GUID 
 
 
 class ApprovalStatus(str, enum.Enum):
@@ -36,7 +36,6 @@ class Company(Base):
         SQLEnum(ApprovalStatus), default=ApprovalStatus.pending, nullable=False
     )
 
-    # Company account link (jodi company nijer login-e post kore)
     created_by_user_id = Column(GUID(), ForeignKey("users.id"), nullable=True)
 
     created_at = Column(DateTime, default=datetime.utcnow)
@@ -56,8 +55,8 @@ class InternshipPosting(Base):
     location = Column(String(255), nullable=True)
     is_remote = Column(Boolean, default=False)
 
-    stipend = Column(String(100), nullable=True)  # ba Numeric field, tomar preference onujayi
-    duration = Column(String(100), nullable=True)  # e.g. "3 months"
+    stipend = Column(String(100), nullable=True)  
+    duration = Column(String(100), nullable=True) 
 
     deadline = Column(DateTime, nullable=False)
     is_active = Column(Boolean, default=True)  # deadline chole gele False kore dite paro
