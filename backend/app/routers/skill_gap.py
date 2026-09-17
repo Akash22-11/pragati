@@ -5,6 +5,7 @@ from app.database import get_db
 from app.dependencies.auth import get_current_user, require_role
 from app.models.user import User, UserRole
 from app.services.skill_gap import get_posting_gap, get_institutional_gap
+from app.services.matching import get_matched_postings
 
 router = APIRouter(prefix="/skill-gap", tags=["Skill Gap"])
 
@@ -29,3 +30,12 @@ def institutional_skill_gap(
 ):
     """Institution-wide demand vs availability, sorted by biggest gap first."""
     return get_institutional_gap(db)
+
+@router.get("/matches")
+def my_matched_postings(
+    min_score: float = 0,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(require_role(UserRole.student)),
+):
+    """Open postings ranked by skill match score, highest first."""
+    return get_matched_postings(db, current_user.id, min_score)        
