@@ -1,7 +1,5 @@
 const mongoose = require("mongoose");
 
-// A single saved item: a note, a photo, or a text file, plus the
-// metadata the user filled in when uploading it.
 const documentSchema = new mongoose.Schema(
   {
     type: {
