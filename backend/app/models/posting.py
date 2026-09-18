@@ -18,12 +18,7 @@ class PostingStatus(str, enum.Enum):
 
 
 class Posting(Base):
-    """
-    Phase 2 -- Internship & Placement Posting
-    A verified recruiter (company) posts an internship/job opening.
-    Students browse open postings and apply; applications are tracked
-    separately in the Application model.
-    """
+  
     __tablename__ = "postings"
 
     id = Column(GUID(), primary_key=True, default=uuid.uuid4)
