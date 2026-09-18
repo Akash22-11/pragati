@@ -32,7 +32,6 @@ class Posting(Base):
     stipend = Column(String, nullable=True) 
     positions = Column(Integer, nullable=True, default=1)
 
-    # JSON array of strings, e.g. ["Python", "React"] -- mirrors Submission.skills
     skills_required = Column(JSON, nullable=True, default=list)
 
     deadline = Column(DateTime, nullable=True)
