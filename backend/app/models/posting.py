@@ -29,7 +29,7 @@ class Posting(Base):
     type = Column(Enum(PostingType), nullable=False, default=PostingType.internship)
 
     location = Column(String, nullable=True)
-    stipend = Column(String, nullable=True)  # free text, e.g. "₹15,000/month" or "12 LPA"
+    stipend = Column(String, nullable=True) 
     positions = Column(Integer, nullable=True, default=1)
 
     # JSON array of strings, e.g. ["Python", "React"] -- mirrors Submission.skills
