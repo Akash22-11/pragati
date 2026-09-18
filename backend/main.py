@@ -55,4 +55,4 @@ fastapi_app.include_router(skill_gap_router, prefix="/skill-gap", tags=["Skill G
 def health_check():
     return {"status": "ok", "project": "Pragati"}
 
-app = socketio.ASGIApp(sio, other_asgi_app=fastapi_app)  # noqa: F811
+app = socketio.ASGIApp(sio, other_asgi_app=fastapi_app) 
