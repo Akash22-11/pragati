@@ -44,6 +44,7 @@ def test_get_me_with_valid_token(client, student_payload):
         "email": student_payload["email"],
         "password": student_payload["password"],
     })
+
     
     token = login_response.json()["access_token"]
 
