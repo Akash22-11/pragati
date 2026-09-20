@@ -2,6 +2,7 @@ from sqlalchemy.orm import Session
 from app.models.submission import Submission, SubmissionStatus
 from app.models.posting import Posting, PostingStatus
 from app.models.user import User
+from datetime import datetime
 import uuid
 
 
@@ -81,3 +82,34 @@ def get_institutional_gap(db: Session) -> list[dict]:
 
     result.sort(key=lambda x: x["gap"], reverse=True)
     return result
+
+
+def get_demand_over_time(db: Session) -> dict:
+    """Honest demand snapshot -- how many postings requiring each skill
+    were created, grouped by month. No prediction, just real history."""
+    postings = db.query(Posting).order_by(Posting.created_at).all()
+
+    monthly_skill_counts = {}
+    for p in postings:
+        if not p.created_at or not p.skills_required:
+            continue
+        month_key = p.created_at.strftime("%Y-%m")
+        if month_key not in monthly_skill_counts:
+            monthly_skill_counts[month_key] = {}
+        for skill in p.skills_required:
+            monthly_skill_counts[month_key][skill] = monthly_skill_counts[month_key].get(skill, 0) + 1
+
+    months = sorted(monthly_skill_counts.keys())
+    all_skills = set()
+    for month_data in monthly_skill_counts.values():
+        all_skills.update(month_data.keys())
+
+    series = {}
+    for skill in all_skills:
+        series[skill] = [monthly_skill_counts[m].get(skill, 0) for m in months]
+
+    return {
+        "months": months,
+        "series": series,
+        "note": "Real posting counts over time, not a prediction. Trends become meaningful as more postings accumulate.",
+    }

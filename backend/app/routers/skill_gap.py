@@ -6,6 +6,7 @@ from app.dependencies.auth import get_current_user, require_role
 from app.models.user import User, UserRole
 from app.services.skill_gap import get_posting_gap, get_institutional_gap
 from app.services.matching import get_matched_postings
+from app.services.skill_gap import get_demand_over_time
 
 router = APIRouter(prefix="/skill-gap", tags=["Skill Gap"])
 
@@ -38,4 +39,13 @@ def my_matched_postings(
     current_user: User = Depends(require_role(UserRole.student)),
 ):
     """Open postings ranked by skill match score, highest first."""
-    return get_matched_postings(db, current_user.id, min_score)        
+    return get_matched_postings(db, current_user.id, min_score)
+
+
+@router.get("/demand-over-time")
+def demand_over_time(
+    db: Session = Depends(get_db),
+    current_user: User = Depends(require_role(UserRole.faculty, UserRole.admin)),
+):
+    """Real skill demand history by month -- not a prediction."""
+    return get_demand_over_time(db)
