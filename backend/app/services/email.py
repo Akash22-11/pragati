@@ -5,7 +5,6 @@ from app.config import settings
 
 
 def send_email(to, subject, body):
-    
     try:
         msg = MIMEMultipart()
         msg['From'] = settings.MAIL_EMAIL
