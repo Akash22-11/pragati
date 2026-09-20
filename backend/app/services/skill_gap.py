@@ -6,7 +6,6 @@ import uuid
 
 
 def get_student_skills(db: Session, student_id: uuid.UUID) -> list[str]:
-    """All skills from a student's verified (approved) submissions, deduped."""
     submissions = db.query(Submission).filter(
         Submission.student_id == student_id,
         Submission.status == SubmissionStatus.approved,
@@ -22,7 +21,7 @@ def get_student_skills(db: Session, student_id: uuid.UUID) -> list[str]:
 
 
 def get_posting_gap(db: Session, student_id: uuid.UUID, posting_id: uuid.UUID) -> dict:
-    """Compare a student's verified skills against one posting's required skills."""
+    
     posting = db.query(Posting).filter(Posting.id == posting_id).first()
     if not posting:
         return None
@@ -47,8 +46,7 @@ def get_posting_gap(db: Session, student_id: uuid.UUID, posting_id: uuid.UUID) -
 
 
 def get_institutional_gap(db: Session) -> list[dict]:
-    """Across all open postings, which required skills are most often
-    missing from verified student profiles institution-wide."""
+    
     open_postings = db.query(Posting).filter(Posting.status == PostingStatus.open).all()
     students = db.query(User).filter(User.role == "student").all()
 
