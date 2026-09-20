@@ -30,7 +30,6 @@ class User(Base):
     reset_token_hash = Column(String, nullable=True)
     reset_token_expires = Column(DateTime, nullable=True)
 
-    # Phase 1 -- Recruiter fields
     company_name = Column(String, nullable=True)
     company_sector = Column(String, nullable=True)
     company_website = Column(String, nullable=True)

@@ -7,10 +7,6 @@ import uuid
 
 
 class RecruiterShortlist(Base):
-    """
-    Tracks which students a recruiter has saved/shortlisted.
-    One-directional relationships only -- User model is not modified.
-    """
     __tablename__ = "recruiter_shortlists"
 
     id = Column(GUID(), primary_key=True, default=uuid.uuid4)

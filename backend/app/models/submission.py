@@ -59,6 +59,7 @@ CATEGORY_SKILL_SUGGESTIONS = {
 }
 
 
+
 class Submission(Base):
     __tablename__ = "submissions"
 

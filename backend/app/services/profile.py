@@ -15,15 +15,14 @@ def get_or_create_profile(db: Session, student_id: uuid.UUID) -> Profile:
     return profile
 
 def get_full_profile(db: Session, student_id: uuid.UUID) -> dict:
-    # Check student exists
+  
     student = db.query(User).filter(User.id == student_id).first()
     if not student:
         raise HTTPException(status_code=404, detail="Student not found")
 
-    # Get or create profile
+   
     profile = get_or_create_profile(db, student_id)
 
-    # Get only verified submissions
     verified_submissions = db.query(Submission).filter(
         Submission.student_id == student_id,
         Submission.status == SubmissionStatus.approved,

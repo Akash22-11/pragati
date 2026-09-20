@@ -18,12 +18,7 @@ class PostingStatus(str, enum.Enum):
 
 
 class Posting(Base):
-    """
-    Phase 2 -- Internship & Placement Posting
-    A verified recruiter (company) posts an internship/job opening.
-    Students browse open postings and apply; applications are tracked
-    separately in the Application model.
-    """
+  
     __tablename__ = "postings"
 
     id = Column(GUID(), primary_key=True, default=uuid.uuid4)
@@ -34,10 +29,9 @@ class Posting(Base):
     type = Column(Enum(PostingType), nullable=False, default=PostingType.internship)
 
     location = Column(String, nullable=True)
-    stipend = Column(String, nullable=True)  # free text, e.g. "₹15,000/month" or "12 LPA"
+    stipend = Column(String, nullable=True) 
     positions = Column(Integer, nullable=True, default=1)
 
-    # JSON array of strings, e.g. ["Python", "React"] -- mirrors Submission.skills
     skills_required = Column(JSON, nullable=True, default=list)
 
     deadline = Column(DateTime, nullable=True)

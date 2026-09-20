@@ -5,12 +5,6 @@ from app.config import settings
 
 
 def send_email(to, subject, body):
-    """
-    Sends an email. Failures are logged but never raised --
-    email delivery must not block core features like submissions,
-    verification, or shortlisting if Gmail credentials aren't
-    configured yet.
-    """
     try:
         msg = MIMEMultipart()
         msg['From'] = settings.MAIL_EMAIL
