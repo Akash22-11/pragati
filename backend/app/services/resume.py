@@ -11,9 +11,7 @@ import io
 
 
 def draft_resume_data(db: Session, student_id) -> dict:
-    """Assemble a resume draft from data already in Pragati -- nothing
-    collected from outside the platform, nothing the student hasn't
-    already submitted and had verified themselves."""
+   
     student = db.query(User).filter(User.id == student_id).first()
     if not student:
         return None
