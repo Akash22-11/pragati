@@ -44,6 +44,7 @@ class Posting(Base):
     applications = relationship(
         "Application", back_populates="posting", cascade="all, delete-orphan"
     )
+    
 
     @property
     def company_name(self):
