@@ -1,6 +1,5 @@
 def explain_shortlist(student_skills: list[str], posting) -> str:
-    """Plain-English explanation of why a student matched a posting --
-    templated from the same skill-overlap data, no LLM call needed."""
+  
     required = posting.skills_required or []
     if not required:
         return "This posting has no specific skill requirements listed."
