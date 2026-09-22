@@ -1,8 +1,4 @@
-"""
-Phase 1 -- Recruiter Schemas
-Pydantic v2 style. Matches the ACTUAL users table schema
-(no `year` or `roll_number` columns exist).
-"""
+
 
 import uuid
 from typing import Optional
