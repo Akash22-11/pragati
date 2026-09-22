@@ -71,6 +71,7 @@ class ShortlistCreate(BaseModel):
 class ShortlistResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
+    
     id: int
     recruiter_id: uuid.UUID
     student_id: uuid.UUID
