@@ -17,6 +17,7 @@ def get_current_user(
         detail="Could not validate credentials",
         headers={"WWW-Authenticate": "Bearer"},
     )
+    
     try:
         token = credentials.credentials
         payload = jwt.decode(token, settings.JWT_SECRET, algorithms=[settings.JWT_ALGORITHM])
@@ -30,6 +31,7 @@ def get_current_user(
     if user is None:
         raise credentials_exception
     return user
+
 
 def require_role(*roles: UserRole):
     def role_checker(current_user: User = Depends(get_current_user)) -> User:
