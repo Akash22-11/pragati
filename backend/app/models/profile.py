@@ -17,5 +17,4 @@ class Profile(Base):
     pdf_url = Column(String, nullable=True)
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
-
     student = relationship("User", backref="profile")
