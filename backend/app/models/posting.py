@@ -6,7 +6,6 @@ from datetime import datetime
 import uuid
 import enum
 
-
 class PostingType(str, enum.Enum):
     internship = "internship"
     job = "job"
