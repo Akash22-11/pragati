@@ -58,5 +58,4 @@ fastapi_app.include_router(skill_gap_router, prefix="/skill-gap", tags=["Skill G
 @fastapi_app.get("/health")
 def health_check():
     return {"status": "ok", "project": "Pragati"}
-
 app = socketio.ASGIApp(sio, other_asgi_app=fastapi_app) 
