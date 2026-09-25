@@ -36,6 +36,7 @@ fastapi_app.add_middleware(
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
+
 )
 
 fastapi_app.include_router(auth_router)
