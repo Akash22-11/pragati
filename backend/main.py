@@ -17,7 +17,6 @@ from app.routers import (
     postings_router,
     skill_gap_router,
 )
-
 from app.socket import sio
 import socketio
 import app.models  
