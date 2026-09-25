@@ -10,7 +10,6 @@ class PostingType(str, enum.Enum):
     internship = "internship"
     job = "job"
 
-
 class PostingStatus(str, enum.Enum):
     open = "open"
     closed = "closed"
