@@ -14,7 +14,6 @@ class PostingStatus(str, enum.Enum):
     open = "open"
     closed = "closed"
 
-
 class Posting(Base):
   
     __tablename__ = "postings"
