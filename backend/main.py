@@ -29,6 +29,7 @@ fastapi_app = FastAPI(
     version="1.0.0",
 )
 
+
 fastapi_app.add_middleware(
     CORSMiddleware,
     allow_origins=settings.ALLOWED_ORIGINS,
