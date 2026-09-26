@@ -3,6 +3,7 @@ from app.models.submission import Submission, SubmissionStatus
 from app.models.posting import Posting, PostingStatus
 from app.models.user import User
 from datetime import datetime
+from app.models.submission import Submission, SubmissionStatus
 import uuid
 
 
@@ -108,4 +109,39 @@ def get_demand_over_time(db: Session) -> dict:
         "months": months,
         "series": series,
         "note": "Real posting counts over time, not a prediction. Trends become meaningful as more postings accumulate.",
+        }
+
+
+def get_skill_category_heatmap(db: Session) -> dict:
+    """Skill x category matrix -- how often each skill appears within
+    each activity category, across all verified submissions."""
+    submissions = db.query(Submission).filter(
+        Submission.status == SubmissionStatus.approved
+    ).all()
+
+    matrix_data = {}
+    all_skills = set()
+    all_categories = set()
+
+    for s in submissions:
+        category = str(s.category)
+        all_categories.add(category)
+        if s.skills:
+            for skill in s.skills:
+                all_skills.add(skill)
+                key = (skill, category)
+                matrix_data[key] = matrix_data.get(key, 0) + 1
+
+    skills = sorted(all_skills)
+    categories = sorted(all_categories)
+
+    matrix = []
+    for skill in skills:
+        row = [matrix_data.get((skill, cat), 0) for cat in categories]
+        matrix.append(row)
+
+    return {
+        "skills": skills,
+        "categories": categories,
+        "matrix": matrix,
     }
