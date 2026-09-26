@@ -1,7 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.config import settings
-from app.routers import (
+from app.routers import 
+(
     auth_router,
     submissions_router,
     profile_router,
@@ -29,12 +30,14 @@ fastapi_app = FastAPI(
     version="1.0.0",
 )
 
+
 fastapi_app.add_middleware(
     CORSMiddleware,
     allow_origins=settings.ALLOWED_ORIGINS,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
+
 )
 
 fastapi_app.include_router(auth_router)
@@ -55,5 +58,4 @@ fastapi_app.include_router(skill_gap_router, prefix="/skill-gap", tags=["Skill G
 @fastapi_app.get("/health")
 def health_check():
     return {"status": "ok", "project": "Pragati"}
-
 app = socketio.ASGIApp(sio, other_asgi_app=fastapi_app) 

@@ -6,16 +6,13 @@ from datetime import datetime
 import uuid
 import enum
 
-
 class PostingType(str, enum.Enum):
     internship = "internship"
     job = "job"
 
-
 class PostingStatus(str, enum.Enum):
     open = "open"
     closed = "closed"
-
 
 class Posting(Base):
   
@@ -44,6 +41,7 @@ class Posting(Base):
     applications = relationship(
         "Application", back_populates="posting", cascade="all, delete-orphan"
     )
+    
 
     @property
     def company_name(self):

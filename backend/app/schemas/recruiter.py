@@ -1,9 +1,3 @@
-"""
-Phase 1 -- Recruiter Schemas
-Pydantic v2 style. Matches the ACTUAL users table schema
-(no `year` or `roll_number` columns exist).
-"""
-
 import uuid
 from typing import Optional
 from pydantic import BaseModel, ConfigDict
@@ -77,6 +71,7 @@ class ShortlistCreate(BaseModel):
 class ShortlistResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
+    
     id: int
     recruiter_id: uuid.UUID
     student_id: uuid.UUID

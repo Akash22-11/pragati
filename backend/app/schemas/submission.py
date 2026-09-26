@@ -30,6 +30,7 @@ class SubmissionResponse(BaseModel):
         from_attributes = True
 
 
+
 class VerifyRequest(BaseModel):
     action: VerificationAction
     note: str | None = None

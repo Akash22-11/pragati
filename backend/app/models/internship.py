@@ -70,6 +70,7 @@ class InternshipPosting(Base):
     applications = relationship("Application", back_populates="posting")
 
 
+
 class Application(Base):
     __tablename__ = "applications"
 
@@ -82,7 +83,7 @@ class Application(Base):
     )
 
     cover_note = Column(Text, nullable=True)
-    resume_url = Column(String(500), nullable=True)  # jodi file upload thake
+    resume_url = Column(String(500), nullable=True)
 
     applied_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
