@@ -8,7 +8,7 @@ import uuid
 
 class Profile(Base):
     __tablename__ = "profiles"
-
+    
     id = Column(GUID(), primary_key=True, default=uuid.uuid4)
     student_id = Column(GUID(), ForeignKey("users.id"), unique=True, nullable=False)
     bio = Column(Text, nullable=True)
