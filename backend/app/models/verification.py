@@ -13,6 +13,7 @@ class VerificationAction(str, enum.Enum):
     returned = "returned"
 
 
+
 class Verification(Base):
     __tablename__ = "verifications"
 
