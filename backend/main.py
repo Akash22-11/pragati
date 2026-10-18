@@ -1,8 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.config import settings
-from app.routers import 
-(
+from app.routers import (
     auth_router,
     submissions_router,
     profile_router,
@@ -17,7 +16,9 @@ from app.routers import
     skills_router,
     postings_router,
     skill_gap_router,
+    ai_router,
 )
+
 
 from app.socket import sio
 import socketio
@@ -54,6 +55,7 @@ fastapi_app.include_router(recruiter_router, prefix="/recruiters", tags=["Recrui
 fastapi_app.include_router(skills_router, prefix="/skills", tags=["Skills"])
 fastapi_app.include_router(postings_router, prefix="/postings", tags=["Internships & Placements"])
 fastapi_app.include_router(skill_gap_router, prefix="/skill-gap", tags=["Skill Gap"])
+fastapi_app.include_router(ai_router)
 
 @fastapi_app.get("/health")
 def health_check():

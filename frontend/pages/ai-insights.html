@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pragati AI — Achievement Intelligence</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500,600&family=Inter:wght@400;500;600&display=swap');
+  :root {
+    --navy-900:#0F1729; --navy-800:#16213A; --line:#263354; --ink:#E7ECF7; --ink-muted:#8C97B8;
+    --verify:#2ECC71; --verify-dim:#1B8F4E; --amber:#B7791F; --amber-bg:#FFF4DC;
+    --paper:#F6F5F1; --paper-card:#FFFFFF; --paper-ink:#14181F; --paper-muted:#6B7280; --paper-line:#E4E1D8;
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family:'Inter',system-ui,sans-serif; background:var(--paper); color:var(--paper-ink); min-height:100vh; }
+  header { background:var(--navy-900); color:var(--ink); padding:18px 40px; display:flex; align-items:center;
+           justify-content:space-between; border-bottom:1px solid var(--line); }
+  .wordmark { font-family:'Newsreader',Georgia,serif; font-size:19px; font-weight:600; }
+  .wordmark span { color:var(--verify); }
+  header a { color:var(--ink-muted); font-size:14px; text-decoration:none; }
+  header a:hover { color:var(--ink); }
+  main { max-width:880px; margin:0 auto; padding:40px 24px 80px; }
+  .eyebrow { font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--verify-dim); font-weight:600; }
+  h1 { font-family:'Newsreader',Georgia,serif; font-size:34px; margin:6px 0 6px; }
+  .sub { color:var(--paper-muted); margin:0 0 20px; }
+  .flow { display:flex; flex-wrap:wrap; gap:6px; font-size:12px; font-weight:600; color:var(--paper-muted); margin-bottom:28px; }
+  .flow span.on { color:var(--verify-dim); }
+  .panel { background:var(--paper-card); border:1px solid var(--paper-line); border-radius:14px; padding:22px; }
+  label { display:block; font-size:13px; font-weight:600; margin-bottom:8px; }
+  select, textarea { width:100%; font:inherit; padding:11px 12px; border:1px solid var(--paper-line); border-radius:10px; background:#fff; color:inherit; }
+  textarea { min-height:96px; resize:vertical; }
+  .row { display:flex; gap:12px; align-items:center; margin-top:14px; flex-wrap:wrap; }
+  button.primary { background:var(--navy-900); color:#fff; border:0; padding:11px 20px; border-radius:10px; font:inherit; font-weight:600; cursor:pointer; }
+  button.primary:hover { background:var(--navy-800); }
+  button.primary:disabled { opacity:.55; cursor:not-allowed; }
+  button.link { background:none; border:0; color:var(--paper-muted); font:inherit; font-size:13px; text-decoration:underline; cursor:pointer; padding:0; }
+  .state { text-align:center; color:var(--paper-muted); padding:44px 16px; }
+  .state.error { color:#B42318; }
+  .spinner { width:22px; height:22px; border:3px solid var(--paper-line); border-top-color:var(--verify-dim); border-radius:50%;
+             animation:spin .8s linear infinite; margin:0 auto 12px; }
+  @keyframes spin { to { transform:rotate(360deg); } }
+  #result { margin-top:24px; }
+  .result-head { display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; align-items:flex-start; }
+  .result-head h2 { font-family:'Newsreader',Georgia,serif; font-size:26px; margin:0 0 4px; }
+  .badge { display:inline-block; font-size:12px; font-weight:600; padding:4px 10px; border-radius:999px; background:#EEF1F8; color:#33415F; margin-right:6px; }
+  .badge.ok { background:#E3F8EC; color:var(--verify-dim); }
+  .badge.warn { background:var(--amber-bg); color:var(--amber); }
+  .summary { color:#2B3340; line-height:1.55; margin:14px 0 0; }
+  .section { margin-top:22px; }
+  .section h3 { font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--paper-muted); margin:0 0 10px; }
+  .chips { display:flex; flex-wrap:wrap; gap:8px; }
+  .chip { padding:6px 12px; border-radius:999px; font-size:13px; font-weight:500; background:#E3F8EC; color:var(--verify-dim); }
+  .chip.tech { background:#fff; border:1px solid var(--paper-line); color:#33415F; }
+  .chip.gap { background:var(--amber-bg); color:var(--amber); }
+  .cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:10px; }
+  .mini { border:1px solid var(--paper-line); border-radius:12px; padding:14px; font-weight:600; font-size:14px; background:#FBFAF7; }
+  ol.steps { margin:0; padding:0; list-style:none; counter-reset:s; display:grid; gap:10px; }
+  ol.steps li { counter-increment:s; display:flex; gap:12px; align-items:flex-start; border:1px solid var(--paper-line);
+                border-radius:12px; padding:14px; line-height:1.45; }
+  ol.steps li::before { content:counter(s); flex:none; width:26px; height:26px; border-radius:50%; background:var(--navy-900); color:#fff;
+                        font-size:13px; font-weight:600; display:flex; align-items:center; justify-content:center; }
+  .foot { margin-top:22px; padding-top:14px; border-top:1px solid var(--paper-line); font-size:12px; color:var(--paper-muted); }
+  .hidden { display:none; }
+  @media (max-width:600px) { header { padding:14px 18px; } h1 { font-size:28px; } }
+</style>
+</head>
+<body>
+<header>
+  <div class="wordmark">PRAGATI<span>.</span></div>
+  <a href="./dashboard.html">← Dashboard</a>
+</header>
+
+<main>
+  <div class="eyebrow">Pragati AI</div>
+  <h1>Achievement Intelligence</h1>
+  <p class="sub">Turn what you've achieved into skills, career paths, gaps and next steps.</p>
+  <div class="flow"><span class="on">VERIFY</span>→<span class="on">UNDERSTAND</span>→<span>IDENTIFY GAPS</span>→<span>RECOMMEND NEXT STEPS</span></div>
+
+  <section class="panel">
+    <div id="pickerBlock">
+      <label for="achievementSelect">Select achievement</label>
+      <select id="achievementSelect"><option value="">Loading your achievements…</option></select>
+      <div class="row">
+        <button class="primary" id="analyzeBtn" disabled>Analyze with AI</button>
+        <button class="link" id="toggleMode" type="button">Or describe an achievement instead</button>
+      </div>
+    </div>
+    <div id="textBlock" class="hidden">
+      <label for="achievementText">Describe your achievement</label>
+      <textarea id="achievementText" maxlength="3000" placeholder="e.g. Completed AWS Cloud Foundations certification covering EC2, S3, IAM and basic cloud architecture."></textarea>
+      <div class="row">
+        <button class="primary" id="analyzeTextBtn">Analyze with AI</button>
+        <button class="link" id="toggleBack" type="button">Back to my achievements</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="result" class="panel">
+    <div class="state">Select an achievement to generate AI insights.</div>
+  </section>
+</main>
+
+<script type="module">
+  import { isLoggedIn } from "../js/auth.js";
+  import { apiFetch } from "../js/api.js";
+
+  if (!isLoggedIn()) window.location.href = "./login.html";
+
+  const $ = (id) => document.getElementById(id);
+  const esc = (v) => String(v ?? "").replace(/[&<>"']/g, (c) => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
+  const chips = (items, cls = "") => `<div class="chips">${items.map((i) => `<span class="chip ${cls}">${esc(i)}</span>`).join("")}</div>`;
+
+  const select = $("achievementSelect"), analyzeBtn = $("analyzeBtn"), analyzeTextBtn = $("analyzeTextBtn"), result = $("result");
+
+  function setBusy(busy) { analyzeBtn.disabled = busy || !select.value; analyzeTextBtn.disabled = busy; }
+
+  function showState(html, cls = "") { result.innerHTML = `<div class="state ${cls}">${html}</div>`; }
+
+  function render(d) {
+    const status = d.verification_status;
+    const verif = status === "approved" ? `<span class="badge ok">✓ Faculty-verified</span>`
+                : status ? `<span class="badge warn">Not yet verified (${esc(status)})</span>` : "";
+    result.innerHTML = `
+      <div class="result-head">
+        <div><h2>${esc(d.title)}</h2><span class="badge">${esc(d.category)}</span>${verif}</div>
+      </div>
+      <p class="summary">${esc(d.summary)}</p>
+      <div class="section"><h3>Skills</h3>${chips(d.skills)}</div>
+      ${d.technologies.length ? `<div class="section"><h3>Technologies &amp; tools</h3>${chips(d.technologies, "tech")}</div>` : ""}
+      <div class="section"><h3>Career paths</h3><div class="cards">${d.career_paths.map((c) => `<div class="mini">${esc(c)}</div>`).join("")}</div></div>
+      <div class="section"><h3>Skill gaps</h3>${chips(d.skill_gaps, "gap")}</div>
+      <div class="section"><h3>Recommended next steps</h3><ol class="steps">${d.recommendations.map((r) => `<li>${esc(r)}</li>`).join("")}</ol></div>
+      <div class="foot">Generated by ${esc(d.model)} (open-weight). AI suggestions are guidance, not a verified record — only faculty verification makes an achievement official.</div>`;
+  }
+
+  async function analyze(body) {
+    setBusy(true);
+    showState(`<div class="spinner"></div>Analyzing your achievement...`);
+    try {
+      const res = await apiFetch("/ai/analyze", { method: "POST", body: JSON.stringify(body) });
+      if (!res) return;                       // 401 -> apiFetch already redirected to login
+      if (!res.ok) throw new Error("failed");
+      render(await res.json());
+    } catch {
+      showState("AI analysis failed. Please try again.", "error");
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function loadAchievements() {
+    try {
+      const meRes = await apiFetch("/auth/me");
+      const subRes = await apiFetch("/submissions/");
+      if (!meRes || !subRes || !meRes.ok || !subRes.ok) throw new Error("load");
+      const me = await meRes.json();
+      const mine = (await subRes.json()).filter((s) => s.student_id === me.id);
+      select.innerHTML = mine.length
+        ? `<option value="">Choose an achievement…</option>` + mine.map((s) =>
+            `<option value="${esc(s.id)}">${esc(s.title)} — ${esc(s.category)} (${esc(s.status)})</option>`).join("")
+        : `<option value="">No achievements yet</option>`;
+      if (!mine.length) showState("You have no achievements yet. Submit one, or describe an achievement above to try Pragati AI.");
+    } catch {
+      select.innerHTML = `<option value="">Couldn't load achievements</option>`;
+      showState("Couldn't load your achievements. You can still describe one manually.", "error");
+    }
+  }
+
+  select.addEventListener("change", () => { analyzeBtn.disabled = !select.value; });
+  analyzeBtn.addEventListener("click", () => analyze({ achievement_id: select.value }));
+  analyzeTextBtn.addEventListener("click", () => {
+    const text = $("achievementText").value.trim();
+    if (!text) return showState("Describe an achievement to generate AI insights.");
+    analyze({ achievement: text });
+  });
+  $("toggleMode").addEventListener("click", () => { $("pickerBlock").classList.add("hidden"); $("textBlock").classList.remove("hidden"); });
+  $("toggleBack").addEventListener("click", () => { $("textBlock").classList.add("hidden"); $("pickerBlock").classList.remove("hidden"); });
+
+  loadAchievements();
+</script>
+</body>
+</html>

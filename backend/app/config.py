@@ -19,7 +19,14 @@ class Settings(BaseSettings):
     MAIL_PASSWORD: str
     ADMIN_EMAIL: str
 
+    # Pragati AI (open-weight model behind an OpenAI-compatible endpoint)
+    AI_BASE_URL: str = "http://localhost:11434/v1"
+    AI_MODEL: str = "qwen2.5:7b-instruct"
+    AI_API_KEY: str = ""
+    AI_TIMEOUT_SECONDS: float = 60.0
+
     class Config:
         env_file = ".env"
-        
+
+
 settings = Settings()
