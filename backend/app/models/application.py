@@ -42,7 +42,7 @@ class Application(Base):
     @property
     def student_name(self):
         return self.student.full_name if self.student else None
-
+        
     @property
     def student_email(self):
         return self.student.email if self.student else None
