@@ -14,7 +14,7 @@ class ApplicationStatus(str, enum.Enum):
     shortlisted = "shortlisted"
     selected = "selected"
     rejected = "rejected"
-
+    
 
 class Application(Base):
     
