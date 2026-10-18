@@ -23,7 +23,6 @@ class SubmissionCategory(str, enum.Enum):
     extracurricular = "extracurricular"
     other = "other"
 
-
 CATEGORY_SKILL_SUGGESTIONS = {
     "certification": [
         "Python", "Java", "SQL", "AWS", "Azure", "GCP", "Machine Learning",
@@ -57,7 +56,6 @@ CATEGORY_SKILL_SUGGESTIONS = {
     ],
     "other": [],
 }
-
 
 
 class Submission(Base):

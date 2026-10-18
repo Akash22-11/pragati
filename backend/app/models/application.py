@@ -16,11 +16,11 @@ class ApplicationStatus(str, enum.Enum):
     rejected = "rejected"
 
 
+
 class Application(Base):
     
     __tablename__ = "applications"
 
-    
     id = Column(GUID(), primary_key=True, default=uuid.uuid4)
 
     posting_id = Column(GUID(), ForeignKey("postings.id", ondelete="CASCADE"), nullable=False, index=True)
@@ -42,7 +42,7 @@ class Application(Base):
     @property
     def student_name(self):
         return self.student.full_name if self.student else None
-
+        
     @property
     def student_email(self):
         return self.student.email if self.student else None
@@ -50,7 +50,7 @@ class Application(Base):
     @property
     def posting_title(self):
         return self.posting.title if self.posting else None
-
+        
     @property
     def company_name(self):
         return self.posting.company_name if self.posting else None
