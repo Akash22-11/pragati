@@ -50,7 +50,7 @@ class Application(Base):
     @property
     def posting_title(self):
         return self.posting.title if self.posting else None
-
+        
     @property
     def company_name(self):
         return self.posting.company_name if self.posting else None
