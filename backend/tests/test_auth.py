@@ -23,7 +23,6 @@ def test_login_success(client, student_payload):
     assert "access_token" in data
     assert data["token_type"] == "bearer"
 
-
 def test_login_wrong_password(client, student_payload):
     client.post("/auth/register", json=student_payload)
     response = client.post("/auth/login", json={
