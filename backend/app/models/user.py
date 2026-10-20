@@ -36,6 +36,6 @@ class User(Base):
     company_description = Column(String, nullable=True)
     is_verified_company = Column(Boolean, default=False)
     cgpa = Column(Float, nullable=True)
-
+    
     submissions = relationship("Submission", back_populates="student")
     notifications = relationship("Notification", back_populates="user")
