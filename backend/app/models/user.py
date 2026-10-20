@@ -14,7 +14,6 @@ class UserRole(str, enum.Enum):
     recruiter = "recruiter"
 
 
-
 class User(Base):
     __tablename__ = "users"
 
