@@ -5,7 +5,6 @@ from app.database import Base
 from datetime import datetime
 import uuid
 
-
 class Notification(Base):
     __tablename__ = "notifications"
 
