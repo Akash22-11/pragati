@@ -19,7 +19,6 @@ from app.routers import (
     ai_router,
 )
 
-
 from app.socket import sio
 import socketio
 import app.models  
