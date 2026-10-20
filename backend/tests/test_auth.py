@@ -45,6 +45,7 @@ def test_get_me_with_valid_token(client, student_payload):
         "password": student_payload["password"],
     })
 
+    
     token = login_response.json()["access_token"]
 
     response = client.get("/auth/me", headers={"Authorization": f"Bearer {token}"})
