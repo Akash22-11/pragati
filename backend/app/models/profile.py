@@ -5,7 +5,6 @@ from app.database import Base
 from datetime import datetime
 import uuid
 
-
 class Profile(Base):
     __tablename__ = "profiles"
 
