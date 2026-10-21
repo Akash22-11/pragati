@@ -23,9 +23,6 @@
   --shadow: 0 1px 3px rgba(16, 31, 60, 0.08);
 }
 
-/* ===== Dark mode overrides =====
-   Same variable names, new values. Every component below already
-   reads from these variables, so nothing else needs to change. */
 :root[data-theme="dark"] {
   --page-bg: #0e1420;
   --cream: #1b2333;
