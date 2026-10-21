@@ -146,7 +146,7 @@ body {
 .dot.rejected { background: var(--red); }
 .dot.sentback { background: var(--purple); }
 
-/* ===== FILTER TABS ===== */
+/*  FILTER TABS  */
 .filters {
   display: flex;
   justify-content: space-between;
