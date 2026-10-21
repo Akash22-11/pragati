@@ -19,5 +19,5 @@ def explain_shortlist(student_skills: list[str], posting) -> str:
         explanation += " Missing: " + missing_str + "."
     else:
         explanation += " Meets all required skills."
-
+      
     return explanation
