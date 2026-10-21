@@ -7,7 +7,7 @@ def explain_shortlist(student_skills: list[str], posting) -> str:
     student_skills_lower = [s.lower() for s in student_skills]
     matched = [s for s in required if s.lower() in student_skills_lower]
     missing = [s for s in required if s.lower() not in student_skills_lower]
-
+  
     if not matched:
         return "No overlap with the " + str(len(required)) + " required skills (" + ", ".join(required) + ")."
 
