@@ -3,7 +3,6 @@ def explain_shortlist(student_skills: list[str], posting) -> str:
     required = posting.skills_required or []
     if not required:
         return "This posting has no specific skill requirements listed."
-
   
     student_skills_lower = [s.lower() for s in student_skills]
     matched = [s for s in required if s.lower() in student_skills_lower]
