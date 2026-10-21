@@ -116,7 +116,7 @@ body {
   font-weight: 700; font-size: 0.85rem;
 }
 
-/* ===== PAGE LAYOUT ===== */
+/*  PAGE LAYOUT*/
 .page { max-width: 1400px; margin: 0 auto; padding: 24px 28px 60px; }
 
 .page-head {
