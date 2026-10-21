@@ -14,6 +14,7 @@ def explain_shortlist(student_skills: list[str], posting) -> str:
     matched_str = ", ".join(matched)
     explanation = "Matched on " + str(len(matched)) + " of " + str(len(required)) + " required skills: " + matched_str + "."
 
+  
     if missing:
         missing_str = ", ".join(missing)
         explanation += " Missing: " + missing_str + "."
