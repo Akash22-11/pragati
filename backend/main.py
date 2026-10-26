@@ -18,10 +18,10 @@ from app.routers import (
     skill_gap_router,
     ai_router,
 )
+
 from app.socket import sio
 import socketio
 import app.models  
-
 
 fastapi_app = FastAPI(
     title="Pragati API",
