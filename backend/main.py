@@ -39,6 +39,7 @@ fastapi_app.add_middleware(
 
 )
 
+
 fastapi_app.include_router(auth_router)
 fastapi_app.include_router(submissions_router)
 fastapi_app.include_router(profile_router)
